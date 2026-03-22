@@ -1,71 +1,146 @@
-/* --- READYMAG VIBES --- */
+/* --- 1. FONTS & VARIABLES --- */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,900;1,900&family=Inter:wght@300;400;600;800&display=swap');
 
+:root {
+    --bg-white: #FFFFFF;
+    --bg-offwhite: #F4F7F5;
+    --bg-dark: #1A1A1A;
+    --accent-green: #2E8B57;
+    --text-main: #2C3E50;
+    --text-light: #596A7A;
+    --text-white: #FFFFFF;
+}
+
+/* --- 2. RESET & BASE --- */
+* {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    background-color: var(--bg-white);
+    color: var(--text-main);
+    overflow-x: hidden;
+}
+
+/* --- 3. READYMAG TYPOGRAPHY --- */
 .giant-text {
-    font-size: clamp(4rem, 15vw, 10rem); /* Texto que se adapta al tamaño de la pantalla */
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(4rem, 15vw, 11rem);
     font-weight: 900;
     line-height: 0.8;
     margin: 0;
     letter-spacing: -5px;
     text-transform: uppercase;
-    font-family: 'Playfair Display', serif;
 }
 
 .dot {
-    color: #2E8B57; /* Tu sello verde */
+    color: var(--accent-green);
 }
 
 .subtitle {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 300;
     text-transform: uppercase;
-    letter-spacing: 5px;
+    letter-spacing: 6px;
+    margin-top: 1.5rem;
     color: var(--text-light);
-    margin-top: 2rem;
 }
 
-/* SECCIONES ASIMÉTRICAS */
+/* --- 4. LAYOUT & SECTIONS --- */
 header, section {
-    min-height: 100vh; /* Cada sección toma toda la pantalla */
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 10%;
-    border: none; /* Adiós a las líneas aburridas */
+    padding: 4rem 10%;
 }
 
-/* ALTERNANCIA DE COLORES (El estilo editorial) */
-#roots { background-color: #ffffff; }
-#greenhouse { background-color: #f4f7f5; } /* Un tono menta muy pálido */
+/* Color alternating for editorial feel */
+#roots { background-color: var(--bg-white); }
+#greenhouse { background-color: var(--bg-offwhite); }
+#tools { background-color: var(--bg-white); }
 #strategy { 
-    background-color: #1a1a1a; 
-    color: #ffffff; 
+    background-color: var(--bg-dark); 
+    color: var(--text-white); 
 }
-#strategy h2, #strategy p, #strategy li { color: #ffffff; }
 
-/* CONTENEDOR DIVIDIDO */
+/* Asymmetric Grid */
 .split-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 5rem;
     align-items: center;
 }
 
-@media (max-width: 768px) {
-    .split-content { grid-template-columns: 1fr; }
-    .giant-text { letter-spacing: -2px; }
+/* --- 5. INTERACTIVE CARDS --- */
+.education-card, .experience {
+    background: #fff;
+    padding: 2.5rem;
+    border-radius: 4px; /* Industrial/Editorial look */
+    margin-bottom: 2rem;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* PLACEHOLDER PARA TUS FOTOS */
+#strategy .experience {
+    background: #252525;
+    border: 1px solid #333;
+}
+
+.education-card:hover, .experience:hover {
+    transform: scale(1.02) rotate(-1deg);
+}
+
+/* --- 6. VISUAL ELEMENTS --- */
+.tag {
+    background: var(--accent-green);
+    color: white;
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+    margin: 0 0.5rem 0.8rem 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
 .image-placeholder {
     width: 100%;
-    max-width: 400px;
     aspect-ratio: 3/4;
     background: #ddd;
-    border-radius: 4px; /* Readymag suele usar bordes rectos o muy sutiles */
-    transform: rotate(3deg); /* Rotación creativa */
-    transition: transform 0.5s ease;
+    border-radius: 8px;
+    transform: rotate(4deg);
+    box-shadow: 20px 20px 60px rgba(0,0,0,0.1);
+    background-size: cover;
+    background-position: center;
 }
 
-.image-placeholder:hover {
-    transform: rotate(0deg) scale(1.05);
+/* --- 7. UTILITIES --- */
+.music-widget {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(8px);
+    padding: 10px 22px;
+    border-radius: 50px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    z-index: 1000;
+    font-size: 0.8rem;
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+#strategy h2 { color: white; }
+#strategy p, #strategy li { color: #ccc; }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .split-content { grid-template-columns: 1fr; }
+    .giant-text { font-size: 5rem; letter-spacing: -2px; }
+    header, section { padding: 2rem 5%; }
 }
