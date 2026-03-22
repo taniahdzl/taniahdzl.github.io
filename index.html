@@ -20,12 +20,30 @@
         <span><strong>Now Playing:</strong> Your Favorite Playlist</span>
     </div>
 
-    <header class="hero">
-        <h1>Hello! I'm Tania 🌱</h1>
-        <p><strong>Data Scientist & Business Engineer</strong></p>
-        <p>Welcome to my digital garden. This is a space where I cultivate code, analyze data, design business strategies, and share my experiences—from the classrooms at ITAM to my travels across Asia. When I'm not programming, you'll probably find me at the university garden or on the Flag Football field.</p>
-    </header>
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
+<header class="hero" data-aos="fade-up" data-aos-duration="1500">
+    <h1 class="giant-text">TANIA<span class="dot">.</span></h1>
+    <p class="subtitle">Data Science | Business Engineering | Strategy</p>
+</header>
+
+<section id="roots" data-aos="fade-right">
+    <div class="split-content">
+        <div class="text-side">
+            <h2>Global Roots</h2>
+            <p>From NUS Singapore to ITAM Mexico...</p>
+        </div>
+        <div class="image-placeholder" data-aos="zoom-in" data-aos-delay="300"></div>
+    </div>
+</section>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    once: false, // Permite que la animación se repita al subir y bajar
+    mirror: true
+  });
+</script>
     <section id="roots" class="parallax-section">
         <h2>🌱 Roots & Global Perspective</h2>
         <p>My academic journey is the foundation of my analytical and multicultural mindset.</p>
