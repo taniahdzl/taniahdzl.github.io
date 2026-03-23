@@ -29,12 +29,7 @@ const slideCount = slides.length;
 let ocarIndex    = 0;
 let ocarAuto;
 
-// Verify buttons exist
-if (!ocarPrev || !ocarNext) {
-    console.error('Carousel buttons not found!');
-} else {
-    console.log('Carousel buttons found and will be initialized');
-}
+console.log('Carousel initialized:', { slideCount, ocarPrev, ocarNext, ocarTrack });
 
 // Build dots
 if (ocarDots) {
@@ -49,40 +44,48 @@ if (ocarDots) {
 
 function ocarGo(index) {
     ocarIndex = (index + slideCount) % slideCount;
+    console.log('Moving to slide:', ocarIndex);
+    
     if (ocarTrack) {
         ocarTrack.style.transform = `translateX(-${ocarIndex * 100}%)`;
     }
+    
     document.querySelectorAll('.ocar-dot').forEach((d, i) => {
         d.classList.toggle('active', i === ocarIndex);
     });
+    
     // Restart float animation on active slide
     slides.forEach((s, i) => {
         s.style.animationPlayState = i === ocarIndex ? 'running' : 'paused';
     });
+    
     resetOcarAuto();
 }
 
-// Attach click listeners
+// Attach click listeners to buttons
 if (ocarPrev) {
     ocarPrev.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
+        console.log('Previous button clicked');
         ocarGo(ocarIndex - 1);
     });
+} else {
+    console.warn('Previous button not found');
 }
+
 if (ocarNext) {
     ocarNext.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
+        console.log('Next button clicked');
         ocarGo(ocarIndex + 1);
     });
+} else {
+    console.warn('Next button not found');
 }
 
 // Touch / swipe support
 let ocarTouchX = null;
 if (ocarTrack) {
     ocarTrack.addEventListener('touchstart', e => { ocarTouchX = e.touches[0].clientX; }, { passive: true });
-    ocarTrack.addEventListener('touchend',   e => {
+    ocarTrack.addEventListener('touchend', e => {
         if (ocarTouchX === null) return;
         const diff = e.changedTouches[0].clientX - ocarTouchX;
         if (Math.abs(diff) > 40) ocarGo(ocarIndex + (diff < 0 ? 1 : -1));
@@ -92,12 +95,16 @@ if (ocarTrack) {
 
 function resetOcarAuto() {
     clearInterval(ocarAuto);
-    ocarAuto = setInterval(() => ocarGo(ocarIndex + 1), 3000);
+    ocarAuto = setInterval(() => {
+        ocarGo(ocarIndex + 1);
+    }, 4000);
 }
 
-// Initialize carousel
+// Initialize carousel with auto-rotation
 if (slideCount > 0) {
     ocarGo(0);
+    console.log('Carousel auto-rotation started');
+}
 }
 
 
