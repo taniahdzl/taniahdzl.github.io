@@ -68,17 +68,20 @@ if (ocarTrack) {
 
 
 /* --- SCROLL REVEAL (Intersection Observer) --- */
-const revealEls = document.querySelectorAll('.tl-item');
+const revealEls = Array.from(document.querySelectorAll('.tl-item'));
 
 const observer = new IntersectionObserver(entries => {
-    entries.forEach((entry, i) => {
+    entries.forEach(entry => {
         if (entry.isIntersecting) {
+            // Use the element's real index in the list for a consistent stagger
+            const idx = revealEls.indexOf(entry.target);
             setTimeout(() => {
                 entry.target.classList.add('visible');
-            }, i * 120);
+            }, idx * 100);
+            observer.unobserve(entry.target); // animate once
         }
     });
-}, { threshold: 0.15 });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
 revealEls.forEach(el => observer.observe(el));
 
