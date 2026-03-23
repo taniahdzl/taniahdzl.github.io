@@ -58,21 +58,20 @@ em { font-family: var(--font-display); font-style: italic; font-weight: 300; }
     z-index: 9999;
     transform: translate(-50%, -50%);
     transition: width 0.2s, height 0.2s, background 0.2s;
-    mix-blend-mode: multiply;
+    opacity: 1;
 }
 .cursor-trail {
     width: 36px;
     height: 36px;
-    border: 1.5px solid var(--green);
+    border: 2px solid var(--green);
     border-radius: 50%;
     position: fixed;
     pointer-events: none;
     z-index: 9998;
     transform: translate(-50%, -50%);
     transition: all 0.15s ease;
-    opacity: 0.5;
+    opacity: 0.7;
 }
-body:hover .cursor { opacity: 1; }
 
 /* --- 4. NAV --- */
 .nav {
