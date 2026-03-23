@@ -1,6 +1,6 @@
 /* ============================================
    TANIA'S PORTFOLIO — style.css
-   Aesthetic: Editorial × Collage × Asian-Latina
+   Aesthetic: Editorial × Collage
    ============================================ */
 
 /* --- 1. FONTS & VARIABLES --- */
@@ -30,7 +30,8 @@
     --shadow-lg: 0 20px 80px rgba(0,0,0,0.18);
 }
 
-/* --- 2. RESET --- */
+/* ========== 2. GLOBAL RESET ========== */
+/* Normalize browser default styles and apply base styles */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -42,19 +43,17 @@ body {
     background: var(--bg);
     color: var(--ink);
     overflow-x: hidden;
+    cursor: url('img/Cursor.png') 0 0, auto !important;
 }
-a { text-decoration: none; color: inherit; }
+a, button { 
+    text-decoration: none; 
+    color: inherit; 
+    cursor: url('img/Cursor.png') 0 0, auto !important;
+}
 em { font-family: var(--font-display); font-style: italic; font-weight: 300; }
 
-/* --- 3. CUSTOM CURSOR --- */
-.cursor {
-    display: none;
-}
-.cursor-trail {
-    display: none;
-}
-
-/* --- 4. NAV --- */
+/* ========== 3. NAVIGATION BAR ========== */
+/* Fixed header with logo, navigation links, and availability status indicator */
 .nav {
     position: fixed;
     top: 0;
@@ -101,14 +100,16 @@ em { font-family: var(--font-display); font-style: italic; font-weight: 300; }
     height: 8px;
     background: var(--green-light);
     border-radius: 50%;
-    animation: pulse 2s ease infinite;
+    animation: pulse 2s ease infinite;  /* Animated pulse effect for availability */
 }
+/* Pulsing animation: expands from center then fades */
 @keyframes pulse {
     0%, 100% { box-shadow: 0 0 0 0 rgba(91,173,114,0.5); }
     50% { box-shadow: 0 0 0 6px rgba(91,173,114,0); }
 }
 
-/* --- 5. HERO --- */
+/* ========== 4. HERO SECTION ========== */
+/* Full-viewport landing section with title, subtitle, CTA button, and carousel */
 #hero {
     min-height: 100vh;
     display: grid;
@@ -194,6 +195,8 @@ em { font-family: var(--font-display); font-style: italic; font-weight: 300; }
 }
 
 /* --- 6. OBJECT CAROUSEL --- */
+/* Interactive carousel displaying 8 visual objects representing interests */
+/* Infinite horizontal scroll with pagination dots and floating animation on each object */
 
 /* Hero layout: title left, carousel right */
 #hero {
@@ -588,7 +591,8 @@ em { font-family: var(--font-display); font-style: italic; font-weight: 300; }
     text-transform: uppercase;
 }
 
-/* --- 7. ABOUT / COLLAGE --- */
+/* ========== 7. ABOUT SECTION ========== */
+/* Personal introduction with collage of experience cards and key statistics grid */
 #about {
     min-height: 100vh;
     padding: 8rem clamp(1.5rem, 6vw, 6rem);
@@ -725,7 +729,10 @@ em { font-family: var(--font-display); font-style: italic; font-weight: 300; }
     text-transform: uppercase;
 }
 
-/* --- 8. EXPERIENCE / TIMELINE --- */
+/* ========== 8. EXPERIENCE & EDUCATION TIMELINE ========== */
+/* Vertical timeline with 8 items showing work history, education, and achievements */
+/* Dark background: left spine with year labels, right cards with details */
+/* CSS animation: items fade in and slide up when entering viewport */
 #experience {
     min-height: 100vh;
     padding: 8rem clamp(1.5rem, 6vw, 6rem);
@@ -810,7 +817,9 @@ em { font-family: var(--font-display); font-style: italic; font-weight: 300; }
     letter-spacing: 0.5px;
 }
 
-/* --- 9. ASIA ATLAS --- */
+/* ========== 9. ASIA ATLAS SECTION ========== */
+/* Showcase of Asian travel experiences with scrolling marquee and postcard grid */
+/* Celebrates the 7-country journey during semester abroad in 2025 */
 #gallery {
     min-height: 100vh;
     padding: 8rem clamp(1.5rem, 6vw, 6rem);
@@ -968,7 +977,6 @@ em { font-family: var(--font-display); font-style: italic; font-weight: 300; }
 .ac-full .atlas-info strong { color: var(--white); }
 .ac-full .atlas-info span { color: rgba(255,255,255,0.6); }
 
-
 /* POSTCARD GRID */
 .postcard-grid {
     display: grid;
@@ -987,20 +995,32 @@ em { font-family: var(--font-display); font-style: italic; font-weight: 300; }
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 .postcard:hover { transform: translateY(-6px) rotate(0.5deg); box-shadow: 6px 16px 40px rgba(0,0,0,0.18); }
+
+/* ↓ taller + overflow hidden so photo fills it */
 .pc-visual {
-    height: 110px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3.2rem;
+    height: 180px;
+    overflow: hidden;
     position: relative;
 }
-.pc-visual-sg   { background: linear-gradient(135deg, #1A4D2E 0%, #2A6B3F 60%, #5BAD72 100%); }
-.pc-visual-bkk  { background: linear-gradient(135deg, #8B1A0E 0%, #D14B35 60%, #E8724A 100%); }
-.pc-visual-seoul{ background: linear-gradient(135deg, #1C3563 0%, #2B4C8C 60%, #4A7BC4 100%); }
-.pc-kyoto .pc-visual { background: linear-gradient(135deg, #6B3F2A 0%, #C49A3C 60%, #E6C76A 100%); }
-.pc-torii::before { content: '⛩️'; font-size: 3rem; }
-.pc-merlion, .pc-tuk, .pc-gate { font-size: 3rem; filter: brightness(1.3); }
+/* ↓ photo fills the visual area */
+.pc-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.4s ease;
+}
+.postcard:hover .pc-visual img {
+    transform: scale(1.06);
+}
+
+/* ↓ remove gradient backgrounds, no longer needed */
+.pc-visual-sg, .pc-visual-bkk, .pc-visual-seoul { background: none; }
+.pc-kyoto .pc-visual { background: none; }
+.pc-torii::before { content: ''; }
+.pc-merlion, .pc-tuk, .pc-gate { display: none; }
+
 .pc-stamp {
     position: absolute; top: 0.7rem; right: 0.7rem;
     font-size: 1.4rem; background: rgba(255,255,255,0.9);
@@ -1011,8 +1031,9 @@ em { font-family: var(--font-display); font-style: italic; font-weight: 300; }
 .pc-postmark {
     position: absolute; top: 0.6rem; left: 0.7rem;
     font-family: var(--font-mono); font-size: 0.5rem;
-    letter-spacing: 1.5px; color: rgba(255,255,255,0.7);
+    letter-spacing: 1.5px; color: rgba(255,255,255,0.9);
     text-transform: uppercase; z-index: 2;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
 }
 .pc-body { padding: 1rem 1.1rem 1.2rem; display: flex; flex-direction: column; gap: 0.2rem; flex: 1; border-top: 1px dashed rgba(0,0,0,0.1); }
 .pc-city { font-family: var(--font-display); font-size: 1.15rem; font-weight: 700; color: var(--ink); }
@@ -1055,7 +1076,9 @@ em { font-family: var(--font-display); font-style: italic; font-weight: 300; }
     text-align: center;
 }
 
-/* --- 10. MUSIC SECTION --- */
+/* ========== 10. MUSIC SECTION ========== */
+/* Large rotating vinyl record display paired with tag cloud of music genres */
+/* Celebrates music as a personal identity and creative outlet for all experiences */
 #music {
     min-height: 80vh;
     padding: 8rem clamp(1.5rem, 6vw, 6rem);
@@ -1147,7 +1170,9 @@ em { font-family: var(--font-display); font-style: italic; font-weight: 300; }
 .g9 { background: #E6E6FF; color: #3C3CAA; }
 .g10 { background: #1A1A1A; color: var(--white); }
 
-/* --- 11. CONTACT --- */
+/* ========== 11. CONTACT & FOOTER SECTION ========== */
+/* Full-height dark section with large CTA headline and three social/contact links */
+/* Invites collaboration and provides multiple ways to get in touch */
 #contact {
     min-height: 70vh;
     padding: 8rem clamp(1.5rem, 6vw, 6rem);
@@ -1205,7 +1230,9 @@ em { font-family: var(--font-display); font-style: italic; font-weight: 300; }
     padding-top: 2rem;
 }
 
-/* --- 12. MUSIC WIDGET --- */
+/* ========== 12. FLOATING MUSIC WIDGET ========== */
+/* Fixed bottom-right corner glassmorphic widget showing current music status */
+/* Displays animated music icon, title, and progress bar that loops continuously */
 .music-widget {
     position: fixed;
     bottom: 2rem;
@@ -1249,7 +1276,11 @@ em { font-family: var(--font-display); font-style: italic; font-weight: 300; }
 }
 @keyframes progress { from { width: 0%; } to { width: 100%; } }
 
-/* --- 13. RESPONSIVE --- */
+/* ========== 13. RESPONSIVE DESIGN ========== */
+/* Media queries for tablets, tablets, and mobile viewports */
+/* Adapts layout, typography, grid columns, and spacing for smaller screens */
+
+/* Large tablets: 1100px and below - Stack hero vertically */
 @media (max-width: 1100px) {
     #hero {
         grid-template-columns: 1fr;
@@ -1263,6 +1294,7 @@ em { font-family: var(--font-display); font-style: italic; font-weight: 300; }
     .obj-carousel { width: 80%; max-width: 340px; }
 }
 
+/* Tablets: 900px and below - Single column layouts, hide nav links */
 @media (max-width: 900px) {
     .nav { padding: 1rem 2rem; }
     .nav-links { display: none; }
@@ -1277,10 +1309,13 @@ em { font-family: var(--font-display); font-style: italic; font-weight: 300; }
     .tl-item { grid-template-columns: 70px 1fr; gap: 1rem; }
     .postcard-grid { grid-template-columns: repeat(2,1fr); }
 }
+
+/* Small phones: 540px and below - Postcard grid to single column */
 @media (max-width: 540px) {
     .postcard-grid { grid-template-columns: 1fr; }
 }
 
+/* Mobile phones: 500px and below - Reduce font sizes and spacing further */
 @media (max-width: 500px) {
     .stats-row { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
     .stat-number { font-size: 2.5rem; }
