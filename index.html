@@ -3,110 +3,385 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tania’s Ecosystem</title>
-    <style>
-        /* Basic styles just to read the structure cleanly */
-        body { font-family: 'Helvetica Neue', sans-serif; line-height: 1.6; margin: 0; padding: 0; background-color: #fcfcfc; color: #333; }
-        header, section { padding: 4rem 2rem; max-width: 900px; margin: auto; border-bottom: 1px solid #eaeaea; }
-        h1, h2, h3 { color: #2c3e50; }
-        .tag { background: #e0f2f1; padding: 0.2rem 0.6rem; border-radius: 4px; font-size: 0.85rem; margin-right: 0.5rem; display: inline-block; margin-bottom: 0.5rem; }
-        .music-widget { position: fixed; bottom: 20px; right: 20px; background: #fff; padding: 10px 20px; border-radius: 50px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 10px; font-size: 0.9rem; z-index: 1000; }
-    </style>
+    <title>Tania Hernández Lira — Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <div class="music-widget">
-        <span>🎧</span>
-        <span><strong>Now Playing:</strong> Your Favorite Playlist</span>
-    </div>
+    <!-- CUSTOM CURSOR -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-trail" id="cursorTrail"></div>
 
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-<header class="hero" data-aos="fade-up" data-aos-duration="1500">
-    <h1 class="giant-text">TANIA<span class="dot">.</span></h1>
-    <p class="subtitle">Data Science | Business Engineering | Strategy</p>
-</header>
-
-<section id="roots" data-aos="fade-right">
-    <div class="split-content">
-        <div class="text-side">
-            <h2>Global Roots</h2>
-            <p>From NUS Singapore to ITAM Mexico...</p>
+    <!-- NAV -->
+    <nav class="nav" id="nav">
+        <div class="nav-logo">T·A·N·I·A</div>
+        <div class="nav-links">
+            <a href="#hero">home</a>
+            <a href="#about">about</a>
+            <a href="#experience">work</a>
+            <a href="#gallery">atlas</a>
+            <a href="#contact">connect</a>
         </div>
-        <div class="image-placeholder" data-aos="zoom-in" data-aos-delay="300"></div>
-    </div>
-</section>
-
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init({
-    once: false, // Permite que la animación se repita al subir y bajar
-    mirror: true
-  });
-</script>
-    <section id="roots" class="parallax-section">
-        <h2>🌱 Roots & Global Perspective</h2>
-        <p>My academic journey is the foundation of my analytical and multicultural mindset.</p>
-        
-        <div class="education-card">
-            <h3>ITAM - Autonomous Technological Institute of Mexico</h3>
-            <p><strong>Double Major:</strong> Data Science and Business Engineering (2022 - 2026)</p>
-            <p>🏆 <em>Honors:</em> Academic Excellence Award (2024), Deloitte Capital Seed Program, Hult Prize On-Campus (2025).</p>
+        <div class="nav-status">
+            <span class="status-dot"></span>
+            <span>Available 2026</span>
         </div>
+    </nav>
 
-        <div class="education-card">
-            <h3>NUS - National University of Singapore</h3>
-            <p><strong>Exchange Student</strong> (Aug 2025 - Dec 2025)</p>
-            <p>An immersive experience in Asia that broadened my intercultural vision. I speak Spanish, English, German, and a bit of Chinese.</p>
+    <!-- HERO -->
+    <section id="hero">
+        <div class="hero-bg-text" aria-hidden="true">TANIA</div>
+
+        <div class="hero-content">
+            <div class="hero-tag">
+                <span>📍</span> Mexico City → Singapore → World
             </div>
-    </section>
-
-    <section id="greenhouse" class="gsap-fade-in">
-        <h2>🪴 The Greenhouse (Experience & Projects)</h2>
-        
-        <div class="experience">
-            <h3>Business Architect Intern (AML) @ Klar</h3>
-            <p><em>2025</em> | Finance, Risk & Data</p>
-            <p>Developed risk analysis dashboards using Tableau and Metabase. Explored transactional data with SQL and structured workflows with dbt and GitHub for Anti-Money Laundering monitoring in a regulated fintech environment.</p>
+            <h1 class="hero-title">
+                <span class="line">Data</span>
+                <span class="line italic">Scientist &amp;</span>
+                <span class="line">Builder</span>
+            </h1>
+            <p class="hero-sub">ITAM × NUS · Flag Football · Huerto · Music · Asia</p>
+            <div class="hero-cta">
+                <a href="#about" class="btn-primary">Explore my world →</a>
+            </div>
         </div>
 
-        <div class="experience">
-            <h3>Vice-President @ Huerto ITAM</h3>
-            <p><em>Since 2022</em> | Sustainability & Community</p>
-            <p>Designed and implemented a community engagement strategy and business model to ensure the garden’s long-term financial and environmental sustainability.</p>
+        <!-- 3D CARD SLIDER -->
+        <div class="slider-scene" id="sliderScene">
+            <div class="slider-container" id="sliderContainer">
+                <div class="card card-1">
+                    <div class="card-inner">
+                        <div class="card-emoji">🏈</div>
+                        <div class="card-label">Flag Football</div>
+                        <div class="card-sub">Athlete &amp; Strategist</div>
+                    </div>
+                </div>
+                <div class="card card-2">
+                    <div class="card-inner">
+                        <div class="card-emoji">🌿</div>
+                        <div class="card-label">Huerto ITAM</div>
+                        <div class="card-sub">VP · Sustainability</div>
+                    </div>
+                </div>
+                <div class="card card-3">
+                    <div class="card-inner">
+                        <div class="card-emoji">📊</div>
+                        <div class="card-label">Data &amp; Finance</div>
+                        <div class="card-sub">Klar · AML · SQL</div>
+                    </div>
+                </div>
+                <div class="card card-4">
+                    <div class="card-inner">
+                        <div class="card-emoji">🎵</div>
+                        <div class="card-label">Music</div>
+                        <div class="card-sub">Every genre, always</div>
+                    </div>
+                </div>
+                <div class="card card-5">
+                    <div class="card-inner">
+                        <div class="card-emoji">✈️</div>
+                        <div class="card-label">Asia Explorer</div>
+                        <div class="card-sub">NUS · 7 countries</div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-controls">
+                <button class="ctrl-btn" id="prevBtn" aria-label="Previous">←</button>
+                <div class="slider-dots" id="sliderDots"></div>
+                <button class="ctrl-btn" id="nextBtn" aria-label="Next">→</button>
+            </div>
         </div>
 
-        <h3>Active Projects</h3>
-        <ul>
-            <li><strong>Zen Focus:</strong> A Python library published on PyPI featuring terminal-based gamification and local network blocking to enhance <em>Deep Work</em>.</li>
-            <li><strong>Wordle-Solver:</strong> A Python algorithm (2025) that maximizes entropy to find the optimal solution for the game.</li>
-            <li><strong>Java Calculator:</strong> A GUI application (2023) built from scratch that processes postfix notation and handles syntax errors.</li>
-        </ul>
-    </section>
-
-    <section id="tools">
-        <h2>🛠️ Cultivation Tools</h2>
-        <div>
-            <span class="tag">Python</span>
-            <span class="tag">R</span>
-            <span class="tag">Java</span>
-            <span class="tag">SQL / NoSQL</span>
-            <span class="tag">Tableau & Metabase</span>
-            <span class="tag">Power BI</span>
-            <span class="tag">dbt & GitHub</span>
-            <span class="tag">Project Management (Scrum)</span>
+        <div class="scroll-indicator">
+            <div class="scroll-line"></div>
+            <span>scroll</span>
         </div>
     </section>
 
-    <section id="strategy">
-        <h2>🏈 Strategy, Community & Movement</h2>
-        <p>I firmly believe in team discipline, whether it's running routes on a Flag Football field or leading community initiatives.</p>
-        
-        <ul>
-            <li><strong>Project Leader @ Daunis Gente Excepcional (2023):</strong> Increased foundation revenue by optimizing workstation arrangements to facilitate staff communication.</li>
-            <li><strong>Volunteer @ Proyecto Sandwich (2022):</strong> Participated in community outreach brigades, distributing meals to families waiting outside hospitals.</li>
-        </ul>
+    <!-- ABOUT / COLLAGE -->
+    <section id="about">
+        <div class="section-label">001 — ABOUT</div>
+
+        <div class="about-grid">
+            <div class="about-intro">
+                <h2 class="section-title">Building at the intersection of <em>data, design &amp; purpose</em></h2>
+                <p>I'm Tania Hernández Lira — a Data Science &amp; Business Engineering student at ITAM, Mexico City. I believe in building things that actually matter: from AML dashboards at a fintech to a self-sustaining university garden.</p>
+                <p>In 2025 I spent a semester at NUS Singapore — and kept going. Seven countries across Asia later, I see the world differently.</p>
+                <div class="lang-pills">
+                    <span class="pill">🇲🇽 Español</span>
+                    <span class="pill">🇺🇸 English</span>
+                    <span class="pill">🇩🇪 Deutsch</span>
+                    <span class="pill">🇸🇬 中文 (a bit)</span>
+                </div>
+            </div>
+
+            <!-- COLLAGE -->
+            <div class="collage-zone">
+                <div class="collage-card c1">
+                    <div class="cc-emoji">🌱</div>
+                    <p>Huerto ITAM<br><small>VP since 2022</small></p>
+                </div>
+                <div class="collage-card c2 rotate-neg">
+                    <div class="cc-emoji">🇸🇬</div>
+                    <p>National University of Singapore<br><small>Aug-Dec 2025</small></p>
+                </div>
+                <div class="collage-card c3 rotate-pos">
+                    <div class="cc-emoji">🎧</div>
+                    <p>Currently on repeat</p>
+                    <div class="vinyl-small">
+                        <div class="vinyl-spin"></div>
+                    </div>
+                </div>
+                <div class="collage-card c4">
+                    <div class="cc-emoji">🏈</div>
+                    <p>Flag Football<br><small>Teamwork &amp; grit</small></p>
+                </div>
+                <div class="collage-card c5 rotate-neg">
+                    <div class="cc-emoji">📐</div>
+                    <p>Data Science and Business Engineering<br><small>ITAM 2022-2027</small></p>
+                </div>
+                <div class="collage-card c5 rotate-neg">
+                <div class="cc-emoji">🎓</div>
+                    <p>IB Diploma (39/45)<br><small>2020–2022</small></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- STAT BAR -->
+        <div class="stats-row">
+            <div class="stat">
+                <div class="stat-number">7</div>
+                <div class="stat-label">Asian countries explored</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Languages spoken</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">3+</div>
+                <div class="stat-label">Years building Huerto ITAM</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">∞</div>
+                <div class="stat-label">Playlists in rotation</div>
+            </div>
+        </div>
     </section>
 
+    <!-- EXPERIENCE -->
+    <section id="experience">
+        <div class="section-label">002 — EXPERIENCE &amp; EDUCATION</div>
+        <h2 class="section-title">The <em>chapters</em> so far</h2>
+
+        <div class="timeline">
+            <div class="tl-item">
+                <div class="tl-year">2025</div>
+                <div class="tl-card">
+                    <div class="tl-tag fintech">Fintech · Data</div>
+                    <h3>Business Architect Intern — Klar</h3>
+                    <p>Built AML risk dashboards in Tableau &amp; Metabase. Worked with SQL, dbt, and GitHub to structure transactional data pipelines inside a regulated fintech environment.</p>
+                    <div class="tl-skills">
+                        <span>SQL</span><span>Tableau</span><span>dbt</span><span>AML</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tl-item">
+                <div class="tl-year">2025</div>
+                <div class="tl-card">
+                    <div class="tl-tag asia">Exchange · Asia</div>
+                    <h3>Exchange Student — NUS Singapore</h3>
+                    <p>Immersive semester in Asia. Broadened my perspective on tech, business, and culture — then kept travelling across the continent.</p>
+                    <div class="tl-skills">
+                        <span>🇸🇬</span><span>🇯🇵</span><span>🇹🇭</span><span>🇮🇩</span><span>+ more</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tl-item">
+                <div class="tl-year">2024</div>
+                <div class="tl-card">
+                    <div class="tl-tag award">Awards</div>
+                    <h3>Academic Distinctions</h3>
+                    <p>Academic Excellence Award · Deloitte Capital Seed Program · Hult Prize On-Campus 2025.</p>
+                </div>
+            </div>
+
+            <div class="tl-item">
+                <div class="tl-year">2022 →</div>
+                <div class="tl-card">
+                    <div class="tl-tag green">Sustainability</div>
+                    <h3>Vice-President — Huerto ITAM</h3>
+                    <p>Designed and implemented a community engagement strategy and business model to keep the garden financially and environmentally sustainable long-term.</p>
+                    <div class="tl-skills">
+                        <span>Strategy</span><span>Community</span><span>Sustainability</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tl-item">
+                <div class="tl-year">2022 →</div>
+                <div class="tl-card">
+                    <div class="tl-tag edu">Education</div>
+                    <h3>Double Major — ITAM</h3>
+                    <p>Data Science &amp; Business Engineering. Graduating 2026. Building at the intersection of analysis, strategy, and technology.</p>
+                    <div class="tl-skills">
+                        <span>Python</span><span>ML</span><span>Finance</span><span>Strategy</span>
+                    </div>
+                </div>
+            </div>
+            <div class="tl-item">
+                <div class="tl-year">2023</div>
+            <div class="tl-card">
+                <div class="tl-tag award">Voluntariado</div>
+                <h3>Project Leader — Daunis Gente Excepcional IAP</h3>
+                <p>Increased revenue for the foundation by redesigning the stations layout to improve staff communication and operational flow.</p>
+            </div>
+</div>
+
+<div class="tl-item">
+    <div class="tl-year">2022</div>
+    <div class="tl-card">
+        <div class="tl-tag green">Comunidad</div>
+        <h3>Volunteer — Proyecto Sandwich</h3>
+        <p>Community outreach brigades distributing meals to families waiting outside hospitals.</p>
+    </div>
+</div>
+        </div>
+    </section>
+
+    <!-- ASIA ATLAS -->
+    <section id="gallery">
+        <div class="section-label">003 — ASIA ATLAS</div>
+        <h2 class="section-title">The semester that <em>changed everything</em></h2>
+
+        <div class="atlas-intro">
+            <p>NUS was the start. Then I kept going — temple hopping in Kyoto, street food in Bangkok, night markets in Taipei. Asia rewired how I think about scale, community, and possibility.</p>
+        </div>
+
+        <div class="country-marquee">
+            <div class="marquee-track">
+                <span>🇸🇬 Singapore</span><span>·</span>
+                <span>🇯🇵 Japan</span><span>·</span>
+                <span>🇹🇭 Thailand</span><span>·</span>
+                <span>🇮🇩 Indonesia</span><span>·</span>
+                <span>🇲🇾 Malaysia</span><span>·</span>
+                <span>🇻🇳 Vietnam</span><span>·</span>
+                <span>🇰🇷 Korea</span>
+                <span>🇸🇬 Singapore</span><span>·</span>
+                <span>🇯🇵 Japan</span><span>·</span>
+                <span>🇹🇭 Thailand</span><span>·</span>
+                <span>🇮🇩 Indonesia</span><span>·</span>
+                <span>🇲🇾 Malaysia</span><span>·</span>
+                <span>🇻🇳 Vietnam</span><span>·</span>
+                <span>🇰🇷 Korea</span>
+            </div>
+        </div>
+
+        <div class="atlas-grid">
+            <div class="atlas-card ac-big">
+                <div class="atlas-emoji">🏯</div>
+                <div class="atlas-info">
+                    <strong>Kyoto, Japan</strong>
+                    <span>Ancient temples, matcha everything</span>
+                </div>
+            </div>
+            <div class="atlas-card ac-small">
+                <div class="atlas-emoji">🦁</div>
+                <div class="atlas-info">
+                    <strong>Singapore</strong>
+                    <span>Home for 5 months</span>
+                </div>
+            </div>
+            <div class="atlas-card ac-small">
+                <div class="atlas-emoji">🛺</div>
+                <div class="atlas-info">
+                    <strong>Bangkok</strong>
+                    <span>Streets, chaos, beauty</span>
+                </div>
+            </div>
+            <div class="atlas-card ac-small">
+                <div class="atlas-emoji">🏛️</div>
+                <div class="atlas-info">
+                    <strong>Seoul</strong>
+                    <span>Palaces, K-indie, street food</span>
+                </div>
+            </div>
+            <div class="atlas-card ac-full">
+                <div class="atlas-emoji">🌏</div>
+                <div class="atlas-info">
+                    <strong>The whole continent taught me: think bigger.</strong>
+                    <span>7 countries · 5 months · countless playlists</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MUSIC -->
+    <section id="music">
+        <div class="section-label">004 — THE PLAYLIST</div>
+        <h2 class="section-title"><em>Music</em> as a language</h2>
+        <p class="music-desc">From afrobeats to r&b, 80's rock to electronic — music is how I process the world. Every city I visited had a soundtrack. Every project has a playlist.</p>
+
+        <div class="vinyl-stage">
+            <div class="big-vinyl" id="bigVinyl">
+                <div class="vinyl-groove"></div>
+                <div class="vinyl-label">
+                    <span>TANIA'S</span>
+                    <span>MIX</span>
+                </div>
+                <div class="needle"></div>
+            </div>
+            <div class="genre-cloud">
+                <span class="genre g1">80's Rock</span>
+                <span class="genre g2">Rap</span>
+                <span class="genre g3">Afrobeats</span>
+                <span class="genre g4">Pop</span>
+                <span class="genre g5">Dance</span>
+                <span class="genre g6">New Age</span>
+                <span class="genre g7">R&B</span>
+                <span class="genre g8">Bossa Nova</span>
+                <span class="genre g9">Electronic</span>
+                <span class="genre g10">Hip-Hop</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="section-label">005 — CONNECT</div>
+        <h2 class="contact-title">Let's build something <em>worth building.</em></h2>
+        <p class="contact-sub">Open to conversations about data, sustainability, strategy, and everything in between.</p>
+        <div class="contact-links">
+            <a href="mailto:lirahdz.tania@gmail.com" class="contact-link">
+                <span>✉</span> email
+            </a>
+            <a href="https://www.linkedin.com/in/tania-hernandez-lira-datascience-businesseng/" class="contact-link">
+                <span>in</span> linkedin
+            </a>
+            <a href="https://github.com/taniahdzl" class="contact-link">
+                <span>↗</span> github
+            </a>
+        </div>
+        <div class="footer-note">
+            Designed &amp; built by Tania · ITAM 2026 · Mexico City 🌮 ↔ Singapore 🦁
+        </div>
+    </section>
+
+    <!-- FLOATING MUSIC WIDGET -->
+    <div class="music-widget" id="musicWidget">
+        <div class="music-disc" id="musicDisc">🎵</div>
+        <div class="music-info">
+            <div class="music-title">Tania's Mix</div>
+            <div class="music-bar">
+                <div class="music-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
