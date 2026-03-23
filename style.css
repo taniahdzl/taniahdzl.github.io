@@ -1199,7 +1199,7 @@ em { font-family: var(--font-display); font-style: italic; font-weight: 300; }
 .footer-note {
     font-family: var(--font-mono);
     font-size: 0.7rem;
-    color: rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.65);
     letter-spacing: 1px;
     border-top: 1px solid rgba(255,255,255,0.06);
     padding-top: 2rem;
