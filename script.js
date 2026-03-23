@@ -3,42 +3,7 @@
    ============================================ */
 
 /* --- CUSTOM CURSOR --- */
-const cursor = document.getElementById('cursor');
-const trail  = document.getElementById('cursorTrail');
-let trailX = 0, trailY = 0;
-
-document.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top  = e.clientY + 'px';
-});
-
-// Smooth trail
-function animateTrail() {
-    trailX += (parseFloat(cursor.style.left || 0) - trailX) * 0.15;
-    trailY += (parseFloat(cursor.style.top  || 0) - trailY) * 0.15;
-    trail.style.left = trailX + 'px';
-    trail.style.top  = trailY + 'px';
-    requestAnimationFrame(animateTrail);
-}
-animateTrail();
-
-// Cursor expand on interactive elements
-document.querySelectorAll('a, button, .collage-card, .atlas-card, .genre').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-        cursor.style.width  = '24px';
-        cursor.style.height = '24px';
-        cursor.style.background = 'transparent';
-        cursor.style.border = '2px solid #2A6B3F';
-        trail.style.opacity = '0';
-    });
-    el.addEventListener('mouseleave', () => {
-        cursor.style.width  = '12px';
-        cursor.style.height = '12px';
-        cursor.style.background = '#2A6B3F';
-        cursor.style.border = 'none';
-        trail.style.opacity = '0.5';
-    });
-});
+// Disabled - using default browser cursor instead
 
 
 /* --- NAVBAR SCROLL EFFECT --- */
@@ -64,18 +29,29 @@ const slideCount = slides.length;
 let ocarIndex    = 0;
 let ocarAuto;
 
+// Verify buttons exist
+if (!ocarPrev || !ocarNext) {
+    console.error('Carousel buttons not found!');
+} else {
+    console.log('Carousel buttons found and will be initialized');
+}
+
 // Build dots
-slides.forEach((_, i) => {
-    const d = document.createElement('div');
-    d.classList.add('ocar-dot');
-    if (i === 0) d.classList.add('active');
-    d.addEventListener('click', () => ocarGo(i));
-    ocarDots.appendChild(d);
-});
+if (ocarDots) {
+    slides.forEach((_, i) => {
+        const d = document.createElement('div');
+        d.classList.add('ocar-dot');
+        if (i === 0) d.classList.add('active');
+        d.addEventListener('click', () => ocarGo(i));
+        ocarDots.appendChild(d);
+    });
+}
 
 function ocarGo(index) {
     ocarIndex = (index + slideCount) % slideCount;
-    ocarTrack.style.transform = `translateX(-${ocarIndex * 100}%)`;
+    if (ocarTrack) {
+        ocarTrack.style.transform = `translateX(-${ocarIndex * 100}%)`;
+    }
     document.querySelectorAll('.ocar-dot').forEach((d, i) => {
         d.classList.toggle('active', i === ocarIndex);
     });
@@ -86,24 +62,43 @@ function ocarGo(index) {
     resetOcarAuto();
 }
 
-ocarPrev.addEventListener('click', () => ocarGo(ocarIndex - 1));
-ocarNext.addEventListener('click', () => ocarGo(ocarIndex + 1));
+// Attach click listeners
+if (ocarPrev) {
+    ocarPrev.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        ocarGo(ocarIndex - 1);
+    });
+}
+if (ocarNext) {
+    ocarNext.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        ocarGo(ocarIndex + 1);
+    });
+}
 
 // Touch / swipe support
 let ocarTouchX = null;
-ocarTrack.addEventListener('touchstart', e => { ocarTouchX = e.touches[0].clientX; }, { passive: true });
-ocarTrack.addEventListener('touchend',   e => {
-    if (ocarTouchX === null) return;
-    const diff = e.changedTouches[0].clientX - ocarTouchX;
-    if (Math.abs(diff) > 40) ocarGo(ocarIndex + (diff < 0 ? 1 : -1));
-    ocarTouchX = null;
-});
+if (ocarTrack) {
+    ocarTrack.addEventListener('touchstart', e => { ocarTouchX = e.touches[0].clientX; }, { passive: true });
+    ocarTrack.addEventListener('touchend',   e => {
+        if (ocarTouchX === null) return;
+        const diff = e.changedTouches[0].clientX - ocarTouchX;
+        if (Math.abs(diff) > 40) ocarGo(ocarIndex + (diff < 0 ? 1 : -1));
+        ocarTouchX = null;
+    });
+}
 
 function resetOcarAuto() {
     clearInterval(ocarAuto);
     ocarAuto = setInterval(() => ocarGo(ocarIndex + 1), 3000);
 }
-ocarGo(0);
+
+// Initialize carousel
+if (slideCount > 0) {
+    ocarGo(0);
+}
 
 
 /* --- SCROLL REVEAL (Intersection Observer) --- */
