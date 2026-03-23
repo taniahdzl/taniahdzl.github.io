@@ -19,71 +19,63 @@ window.addEventListener('scroll', () => {
 });
 
 
-/* --- OBJECT CAROUSEL (auto-rotate, no buttons needed) --- */
-const ocarTrack  = document.getElementById('ocarTrack');
-const ocarDots   = document.getElementById('ocarDots');
-const slides     = document.querySelectorAll('.ocar-slide');
-const slideCount = slides.length;
-let ocarIndex    = 0;
+/* --- OBJECT CAROUSEL --- */
+(function () {
+    const track  = document.getElementById('ocarTrack');
+    const dotBox = document.getElementById('ocarDots');
+    if (!track) return;
 
-// Build dots — clicking still lets user jump to a slide
-if (ocarDots) {
+    const slides = track.querySelectorAll('.ocar-slide');
+    const total  = slides.length;
+    let cur = 0;
+
+    // Build dots
     slides.forEach((_, i) => {
         const d = document.createElement('div');
-        d.classList.add('ocar-dot');
-        if (i === 0) d.classList.add('active');
-        d.addEventListener('click', () => ocarGo(i));
-        ocarDots.appendChild(d);
+        d.className = 'ocar-dot' + (i === 0 ? ' active' : '');
+        d.addEventListener('click', () => go(i));
+        dotBox.appendChild(d);
     });
-}
 
-function ocarGo(index) {
-    ocarIndex = (index + slideCount) % slideCount;
-    if (ocarTrack) ocarTrack.style.transform = `translateX(-${ocarIndex * 100}%)`;
-    document.querySelectorAll('.ocar-dot').forEach((d, i) => {
-        d.classList.toggle('active', i === ocarIndex);
+    function go(n) {
+        cur = ((n % total) + total) % total;
+        track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+        dotBox.querySelectorAll('.ocar-dot').forEach((d, i) => {
+            d.classList.toggle('active', i === cur);
+        });
+    }
+
+    // Auto-advance
+    setInterval(() => go(cur + 1), 2500);
+
+    // Touch swipe
+    let tx = null;
+    track.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+    track.addEventListener('touchend',   e => {
+        if (tx === null) return;
+        if (Math.abs(e.changedTouches[0].clientX - tx) > 40)
+            go(cur + (e.changedTouches[0].clientX < tx ? 1 : -1));
+        tx = null;
     });
-    slides.forEach((s, i) => {
-        s.style.animationPlayState = i === ocarIndex ? 'running' : 'paused';
-    });
-}
-
-// Auto-advance every 2.5 s — no buttons needed
-if (slideCount > 0) {
-    ocarGo(0);
-    setInterval(() => ocarGo(ocarIndex + 1), 2500);
-}
-
-// Swipe support on touch screens
-let ocarTouchX = null;
-if (ocarTrack) {
-    ocarTrack.addEventListener('touchstart', e => { ocarTouchX = e.touches[0].clientX; }, { passive: true });
-    ocarTrack.addEventListener('touchend', e => {
-        if (ocarTouchX === null) return;
-        const diff = e.changedTouches[0].clientX - ocarTouchX;
-        if (Math.abs(diff) > 40) ocarGo(ocarIndex + (diff < 0 ? 1 : -1));
-        ocarTouchX = null;
-    });
-}
+}());
 
 
-/* --- SCROLL REVEAL (Intersection Observer) --- */
-const revealEls = Array.from(document.querySelectorAll('.tl-item'));
+/* --- SCROLL REVEAL --- */
+(function () {
+    const items = Array.from(document.querySelectorAll('.tl-item'));
+    if (!items.length) return;
 
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            // Use the element's real index in the list for a consistent stagger
-            const idx = revealEls.indexOf(entry.target);
-            setTimeout(() => {
-                entry.target.classList.add('visible');
-            }, idx * 100);
-            observer.unobserve(entry.target); // animate once
-        }
-    });
-}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const idx = items.indexOf(entry.target);
+            setTimeout(() => entry.target.classList.add('visible'), idx * 100);
+            io.unobserve(entry.target);
+        });
+    }, { threshold: 0, rootMargin: '0px 0px -60px 0px' });
 
-revealEls.forEach(el => observer.observe(el));
+    items.forEach(el => io.observe(el));
+}());
 
 
 /* --- PARALLAX on hero background text --- */
