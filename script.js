@@ -54,64 +54,56 @@ window.addEventListener('scroll', () => {
 });
 
 
-/* --- 3D CARD SLIDER --- */
-const sliderContainer = document.getElementById('sliderContainer');
-const sliderDots      = document.getElementById('sliderDots');
-const prevBtn         = document.getElementById('prevBtn');
-const nextBtn         = document.getElementById('nextBtn');
-const cards = document.querySelectorAll('.card');
-const total = cards.length;
-let currentIndex = 0;
-let autoRotate;
+/* --- OBJECT CAROUSEL --- */
+const ocarTrack  = document.getElementById('ocarTrack');
+const ocarDots   = document.getElementById('ocarDots');
+const ocarPrev   = document.getElementById('ocarPrev');
+const ocarNext   = document.getElementById('ocarNext');
+const slides     = document.querySelectorAll('.ocar-slide');
+const slideCount = slides.length;
+let ocarIndex    = 0;
+let ocarAuto;
 
-// Create dots
-cards.forEach((_, i) => {
-    const dot = document.createElement('div');
-    dot.classList.add('dot-el');
-    if (i === 0) dot.classList.add('active');
-    dot.addEventListener('click', () => goToSlide(i));
-    sliderDots.appendChild(dot);
+// Build dots
+slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.classList.add('ocar-dot');
+    if (i === 0) d.classList.add('active');
+    d.addEventListener('click', () => ocarGo(i));
+    ocarDots.appendChild(d);
 });
 
-function updateSlider() {
-    const angle = 360 / total;
-    sliderContainer.style.transform = `rotateY(${-currentIndex * angle}deg)`;
-    document.querySelectorAll('.dot-el').forEach((d, i) => {
-        d.classList.toggle('active', i === currentIndex);
+function ocarGo(index) {
+    ocarIndex = (index + slideCount) % slideCount;
+    ocarTrack.style.transform = `translateX(-${ocarIndex * 100}%)`;
+    document.querySelectorAll('.ocar-dot').forEach((d, i) => {
+        d.classList.toggle('active', i === ocarIndex);
     });
+    // Restart float animation on active slide
+    slides.forEach((s, i) => {
+        s.style.animationPlayState = i === ocarIndex ? 'running' : 'paused';
+    });
+    resetOcarAuto();
 }
 
-function goToSlide(index) {
-    currentIndex = (index + total) % total;
-    updateSlider();
-    resetAuto();
-}
+ocarPrev.addEventListener('click', () => ocarGo(ocarIndex - 1));
+ocarNext.addEventListener('click', () => ocarGo(ocarIndex + 1));
 
-prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
-nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
-
-// Touch/drag support
-let dragStartX = null;
-sliderContainer.addEventListener('mousedown',  e => { dragStartX = e.clientX; });
-sliderContainer.addEventListener('touchstart', e => { dragStartX = e.touches[0].clientX; });
-document.addEventListener('mouseup', e => {
-    if (dragStartX === null) return;
-    const diff = e.clientX - dragStartX;
-    if (Math.abs(diff) > 40) goToSlide(currentIndex + (diff < 0 ? 1 : -1));
-    dragStartX = null;
-});
-document.addEventListener('touchend', e => {
-    if (dragStartX === null) return;
-    const diff = e.changedTouches[0].clientX - dragStartX;
-    if (Math.abs(diff) > 40) goToSlide(currentIndex + (diff < 0 ? 1 : -1));
-    dragStartX = null;
+// Touch / swipe support
+let ocarTouchX = null;
+ocarTrack.addEventListener('touchstart', e => { ocarTouchX = e.touches[0].clientX; }, { passive: true });
+ocarTrack.addEventListener('touchend',   e => {
+    if (ocarTouchX === null) return;
+    const diff = e.changedTouches[0].clientX - ocarTouchX;
+    if (Math.abs(diff) > 40) ocarGo(ocarIndex + (diff < 0 ? 1 : -1));
+    ocarTouchX = null;
 });
 
-function resetAuto() {
-    clearInterval(autoRotate);
-    autoRotate = setInterval(() => goToSlide(currentIndex + 1), 3500);
+function resetOcarAuto() {
+    clearInterval(ocarAuto);
+    ocarAuto = setInterval(() => ocarGo(ocarIndex + 1), 3000);
 }
-resetAuto();
+ocarGo(0);
 
 
 /* --- SCROLL REVEAL (Intersection Observer) --- */
