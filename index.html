@@ -49,153 +49,135 @@
     <!-- ========== HERO SECTION ========== -->
     <!-- Main landing section with introduction and call-to-action -->
     <section id="hero">
-        <!-- Large background text for visual effect (hidden from screen readers) -->
-        <div class="hero-bg-text" aria-hidden="true">TANIA</div>
-
-        <!-- Main hero content block -->
-        <div class="hero-content">
-            <!-- Location tagline showing geographic journey -->
+        <!-- 1. Title first -->
+        <div class="banner-center">
             <div class="hero-tag">
                 <span>📍</span> Mexico City → Singapore → World
             </div>
-            
-            <!-- Main headline introducing profession and identity -->
             <h1 class="hero-title">
                 <span class="line">Data</span>
                 <span class="line italic">Scientist &amp;</span>
                 <span class="line">Builder</span>
             </h1>
-            
-            <!-- Secondary description with key interests and affiliations -->
-            <p class="hero-sub">ITAM × NUS · Flag Football · Huerto · Music </p>
-            
-            <!-- Primary call-to-action button -->
-            <div class="hero-cta">
-                <a href="#about" class="btn-primary">Explore my world →</a>
-            </div>
+            <p class="hero-sub">ITAM × NUS · Flag Football · Huerto · Music · Asia</p>
+            <a href="#about" class="btn-primary">Explore my world →</a>
         </div>
-
-        <!-- ========== OBJECT CAROUSEL ========== -->
-        <!-- Interactive carousel showcasing 8 visual elements representing interests -->
-        <div class="obj-carousel" id="objCarousel">
-            <!-- Track container for carousel items (scrolled via JavaScript) -->
-            <div class="ocar-track" id="ocarTrack">
-
+        <div class="banner" style="--quantity:8">
+            <div class="slider">
                 <!-- Vinyl -->
-                <div class="ocar-slide vinyl-obj">
-                    <div class="vinyl-disc">
-                        <div class="vinyl-inner-ring"></div>
-                        <div class="vinyl-center-dot"></div>
+                <div class="item" style="--position:1">
+                    <div class="ocar-slide vinyl-obj">
+                        <div class="vinyl-disc">
+                            <div class="vinyl-inner-ring"></div>
+                            <div class="vinyl-center-dot"></div>
+                        </div>
+                        <span class="obj-label">now playing</span>
                     </div>
-                    <span class="obj-label">always playing</span>
                 </div>
-
                 <!-- Boarding pass -->
-                <div class="ocar-slide boarding-obj">
-                    <div class="boarding-pass">
-                        <div class="bp-header">
-                            <span class="bp-airline">MX → SG</span>
-                            <span class="bp-class">EXCHANGE</span>
+                <div class="item" style="--position:2">
+                    <div class="ocar-slide boarding-obj">
+                        <div class="boarding-pass">
+                            <div class="bp-header">
+                                <span class="bp-airline">MX → SG</span>
+                                <span class="bp-class">EXCHANGE</span>
+                            </div>
+                            <div class="bp-route">
+                                <span class="bp-city">MEX</span>
+                                <span class="bp-arrow">✈</span>
+                                <span class="bp-city">SIN</span>
+                            </div>
+                            <div class="bp-barcode"></div>
+                            <div class="bp-name">TANIA / NUS 2025</div>
                         </div>
-                        <div class="bp-route">
-                            <span class="bp-city">MEX</span>
-                            <span class="bp-arrow">✈</span>
-                            <span class="bp-city">SIN</span>
-                        </div>
-                        <div class="bp-barcode"></div>
-                        <div class="bp-name">TANIA / NUS 2025</div>
+                        <span class="obj-label">singapore exchange</span>
                     </div>
-                    <span class="obj-label">singapore exchange</span>
                 </div>
-
-                <!-- Flag football -->
-                <div class="ocar-slide football-obj">
-                    <div class="football-field">
-                        <div class="ff-lines">
-                            <div class="ff-line"></div>
-                            <div class="ff-line"></div>
-                            <div class="ff-line"></div>
+                <!-- Football -->
+                <div class="item" style="--position:3">
+                    <div class="ocar-slide football-obj">
+                        <div class="football-field">
+                            <div class="ff-lines">
+                                <div class="ff-line"></div>
+                                <div class="ff-line"></div>
+                                <div class="ff-line"></div>
+                            </div>
+                            <div class="ff-ball">🏈</div>
                         </div>
-                        <div class="ff-ball">🏈</div>
+                        <span class="obj-label">flag football</span>
                     </div>
-                    <span class="obj-label">flag football</span>
                 </div>
-
                 <!-- Plant -->
-                <div class="ocar-slide plant-obj">
-                    <div class="plant-pot">
-                        <div class="plant-leaves">
-                            <div class="leaf l1"></div>
-                            <div class="leaf l2"></div>
-                            <div class="leaf l3"></div>
+                <div class="item" style="--position:4">
+                    <div class="ocar-slide plant-obj">
+                        <div class="plant-pot">
+                            <div class="plant-leaves">
+                                <div class="leaf l1"></div>
+                                <div class="leaf l2"></div>
+                                <div class="leaf l3"></div>
+                            </div>
+                            <div class="pot-body"></div>
                         </div>
-                        <div class="pot-body"></div>
+                        <span class="obj-label">huerto itam</span>
                     </div>
-                    <span class="obj-label">huerto itam</span>
                 </div>
-
                 <!-- Data chart -->
-                <div class="ocar-slide chart-obj">
-                    <div class="data-card">
-                        <div class="dc-title">AML Dashboard</div>
-                        <div class="dc-bars">
-                            <div class="dc-bar" style="height:40%"></div>
-                            <div class="dc-bar" style="height:70%"></div>
-                            <div class="dc-bar" style="height:55%"></div>
-                            <div class="dc-bar" style="height:90%"></div>
-                            <div class="dc-bar" style="height:65%"></div>
-                            <div class="dc-bar" style="height:80%"></div>
+                <div class="item" style="--position:5">
+                    <div class="ocar-slide chart-obj">
+                        <div class="data-card">
+                            <div class="dc-title">AML Dashboard</div>
+                            <div class="dc-bars">
+                                <div class="dc-bar" style="height:40%"></div>
+                                <div class="dc-bar" style="height:70%"></div>
+                                <div class="dc-bar" style="height:55%"></div>
+                                <div class="dc-bar" style="height:90%"></div>
+                                <div class="dc-bar" style="height:65%"></div>
+                                <div class="dc-bar" style="height:80%"></div>
+                            </div>
+                            <div class="dc-tag">Klar · Tableau · SQL</div>
                         </div>
-                        <div class="dc-tag">Klar · Tableau · SQL</div>
+                        <span class="obj-label">data &amp; fintech</span>
                     </div>
-                    <span class="obj-label">data &amp; fintech</span>
                 </div>
-
                 <!-- Sticky note -->
-                <div class="ocar-slide note-obj">
-                    <div class="sticky-note">
-                        <p>sustainable<br>business model</p>
-                        <div class="note-lines">
-                            <div></div><div></div><div></div>
+                <div class="item" style="--position:6">
+                    <div class="ocar-slide note-obj">
+                        <div class="sticky-note">
+                            <p>sustainable<br>business model</p>
+                            <div class="note-lines">
+                                <div></div><div></div><div></div>
+                            </div>
                         </div>
+                        <span class="obj-label">strategy</span>
                     </div>
-                    <span class="obj-label">strategy</span>
                 </div>
-
                 <!-- Beads -->
-                <div class="ocar-slide beads-obj">
-                    <div class="beads">
-                        <span class="bead">T</span>
-                        <span class="bead">A</span>
-                        <span class="bead">N</span>
-                        <span class="bead">I</span>
-                        <span class="bead">A</span>
+                <div class="item" style="--position:7">
+                    <div class="ocar-slide beads-obj">
+                        <div class="beads">
+                            <span class="bead">T</span>
+                            <span class="bead">A</span>
+                            <span class="bead">N</span>
+                            <span class="bead">I</span>
+                            <span class="bead">A</span>
+                        </div>
+                        <span class="obj-label">that's me</span>
                     </div>
-                    <span class="obj-label">that's me</span>
                 </div>
-
-                <!-- Pressed flower -->
-                <div class="ocar-slide flower-obj">
-                    <div class="pressed-flower">
-                        <div class="pf-petal p1"></div>
-                        <div class="pf-petal p2"></div>
-                        <div class="pf-petal p3"></div>
-                        <div class="pf-petal p4"></div>
-                        <div class="pf-center"></div>
+                <!-- Flower -->
+                <div class="item" style="--position:8">
+                    <div class="ocar-slide flower-obj">
+                        <div class="pressed-flower">
+                            <div class="pf-petal p1"></div>
+                            <div class="pf-petal p2"></div>
+                            <div class="pf-petal p3"></div>
+                            <div class="pf-petal p4"></div>
+                            <div class="pf-center"></div>
+                        </div>
+                        <span class="obj-label">nature lover</span>
                     </div>
-                    <span class="obj-label">nature lover</span>
                 </div>
-
-            </div><!-- end track -->
-
-            <!-- Navigation dots for carousel pagination (generated by JavaScript) -->
-            <div class="ocar-dots" id="ocarDots"></div>
-        </div>
-
-        <!-- Scroll hint indicator at bottom of hero section -->
-        <div class="scroll-indicator">
-            <div class="scroll-line"></div>
-            <span>scroll</span>
+            </div>
         </div>
     </section>
 
