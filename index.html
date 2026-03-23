@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tania Hernández Lira — Portfolio</title>
+    <title>Tania — Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
         <div class="nav-links">
             <a href="#hero">home</a>
             <a href="#about">about</a>
-            <a href="#experience">work</a>
+            <a href="#experience">experience</a>
             <a href="#gallery">atlas</a>
             <a href="#contact">connect</a>
         </div>
@@ -49,50 +49,121 @@
             </div>
         </div>
 
-        <!-- 3D CARD SLIDER -->
-        <div class="slider-scene" id="sliderScene">
-            <div class="slider-container" id="sliderContainer">
-                <div class="card card-1">
-                    <div class="card-inner">
-                        <div class="card-emoji">🏈</div>
-                        <div class="card-label">Flag Football</div>
-                        <div class="card-sub">Athlete &amp; Strategist</div>
+        <!-- OBJECT CAROUSEL -->
+        <div class="obj-carousel" id="objCarousel">
+            <button class="ocar-btn ocar-prev" id="ocarPrev" aria-label="Previous">←</button>
+            <button class="ocar-btn ocar-next" id="ocarNext" aria-label="Next">→</button>
+
+            <div class="ocar-track" id="ocarTrack">
+
+                <!-- Vinyl -->
+                <div class="ocar-slide vinyl-obj">
+                    <div class="vinyl-disc">
+                        <div class="vinyl-inner-ring"></div>
+                        <div class="vinyl-center-dot"></div>
                     </div>
+                    <span class="obj-label">now playing</span>
                 </div>
-                <div class="card card-2">
-                    <div class="card-inner">
-                        <div class="card-emoji">🌿</div>
-                        <div class="card-label">Huerto ITAM</div>
-                        <div class="card-sub">VP · Sustainability</div>
+
+                <!-- Boarding pass -->
+                <div class="ocar-slide boarding-obj">
+                    <div class="boarding-pass">
+                        <div class="bp-header">
+                            <span class="bp-airline">MX → SG</span>
+                            <span class="bp-class">EXCHANGE</span>
+                        </div>
+                        <div class="bp-route">
+                            <span class="bp-city">MEX</span>
+                            <span class="bp-arrow">✈</span>
+                            <span class="bp-city">SIN</span>
+                        </div>
+                        <div class="bp-barcode"></div>
+                        <div class="bp-name">TANIA / NUS 2025</div>
                     </div>
+                    <span class="obj-label">singapore exchange</span>
                 </div>
-                <div class="card card-3">
-                    <div class="card-inner">
-                        <div class="card-emoji">📊</div>
-                        <div class="card-label">Data &amp; Finance</div>
-                        <div class="card-sub">Klar · AML · SQL</div>
+
+                <!-- Flag football -->
+                <div class="ocar-slide football-obj">
+                    <div class="football-field">
+                        <div class="ff-lines">
+                            <div class="ff-line"></div>
+                            <div class="ff-line"></div>
+                            <div class="ff-line"></div>
+                        </div>
+                        <div class="ff-ball">🏈</div>
                     </div>
+                    <span class="obj-label">flag football</span>
                 </div>
-                <div class="card card-4">
-                    <div class="card-inner">
-                        <div class="card-emoji">🎵</div>
-                        <div class="card-label">Music</div>
-                        <div class="card-sub">Every genre, always</div>
+
+                <!-- Plant -->
+                <div class="ocar-slide plant-obj">
+                    <div class="plant-pot">
+                        <div class="plant-leaves">
+                            <div class="leaf l1"></div>
+                            <div class="leaf l2"></div>
+                            <div class="leaf l3"></div>
+                        </div>
+                        <div class="pot-body"></div>
                     </div>
+                    <span class="obj-label">huerto itam</span>
                 </div>
-                <div class="card card-5">
-                    <div class="card-inner">
-                        <div class="card-emoji">✈️</div>
-                        <div class="card-label">Asia Explorer</div>
-                        <div class="card-sub">NUS · 7 countries</div>
+
+                <!-- Data chart -->
+                <div class="ocar-slide chart-obj">
+                    <div class="data-card">
+                        <div class="dc-title">AML Dashboard</div>
+                        <div class="dc-bars">
+                            <div class="dc-bar" style="height:40%"></div>
+                            <div class="dc-bar" style="height:70%"></div>
+                            <div class="dc-bar" style="height:55%"></div>
+                            <div class="dc-bar" style="height:90%"></div>
+                            <div class="dc-bar" style="height:65%"></div>
+                            <div class="dc-bar" style="height:80%"></div>
+                        </div>
+                        <div class="dc-tag">Klar · Tableau · SQL</div>
                     </div>
+                    <span class="obj-label">data &amp; fintech</span>
                 </div>
-            </div>
-            <div class="slider-controls">
-                <button class="ctrl-btn" id="prevBtn" aria-label="Previous">←</button>
-                <div class="slider-dots" id="sliderDots"></div>
-                <button class="ctrl-btn" id="nextBtn" aria-label="Next">→</button>
-            </div>
+
+                <!-- Sticky note -->
+                <div class="ocar-slide note-obj">
+                    <div class="sticky-note">
+                        <p>sustainable<br>business model</p>
+                        <div class="note-lines">
+                            <div></div><div></div><div></div>
+                        </div>
+                    </div>
+                    <span class="obj-label">strategy</span>
+                </div>
+
+                <!-- Beads -->
+                <div class="ocar-slide beads-obj">
+                    <div class="beads">
+                        <span class="bead">T</span>
+                        <span class="bead">A</span>
+                        <span class="bead">N</span>
+                        <span class="bead">I</span>
+                        <span class="bead">A</span>
+                    </div>
+                    <span class="obj-label">that's me</span>
+                </div>
+
+                <!-- Pressed flower -->
+                <div class="ocar-slide flower-obj">
+                    <div class="pressed-flower">
+                        <div class="pf-petal p1"></div>
+                        <div class="pf-petal p2"></div>
+                        <div class="pf-petal p3"></div>
+                        <div class="pf-petal p4"></div>
+                        <div class="pf-center"></div>
+                    </div>
+                    <span class="obj-label">nature lover</span>
+                </div>
+
+            </div><!-- end track -->
+
+            <div class="ocar-dots" id="ocarDots"></div>
         </div>
 
         <div class="scroll-indicator">
@@ -108,7 +179,7 @@
         <div class="about-grid">
             <div class="about-intro">
                 <h2 class="section-title">Building at the intersection of <em>data, design &amp; purpose</em></h2>
-                <p>I'm Tania Hernández Lira — a Data Science &amp; Business Engineering student at ITAM, Mexico City. I believe in building things that actually matter: from AML dashboards at a fintech to a self-sustaining university garden.</p>
+                <p>I'm Tania — a Data Science &amp; Business Engineering student at ITAM, Mexico City. I believe in building things that actually matter: from AML dashboards at a fintech to a self-sustaining university garden.</p>
                 <p>In 2025 I spent a semester at NUS Singapore — and kept going. Seven countries across Asia later, I see the world differently.</p>
                 <div class="lang-pills">
                     <span class="pill">🇲🇽 Español</span>
@@ -125,8 +196,8 @@
                     <p>Huerto ITAM<br><small>VP since 2022</small></p>
                 </div>
                 <div class="collage-card c2 rotate-neg">
-                    <div class="cc-emoji">🇸🇬</div>
-                    <p>National University of Singapore<br><small>Aug-Dec 2025</small></p>
+                    <div class="cc-emoji">🏯</div>
+                    <p>🇸🇬 Singapore <br><small>Agu-Dec 2025</small></p>
                 </div>
                 <div class="collage-card c3 rotate-pos">
                     <div class="cc-emoji">🎧</div>
@@ -140,11 +211,7 @@
                     <p>Flag Football<br><small>Teamwork &amp; grit</small></p>
                 </div>
                 <div class="collage-card c5 rotate-neg">
-                    <div class="cc-emoji">📐</div>
-                    <p>Data Science and Business Engineering<br><small>ITAM 2022-2027</small></p>
-                </div>
-                <div class="collage-card c5 rotate-neg">
-                <div class="cc-emoji">🎓</div>
+                    <div class="cc-emoji">🎓</div>
                     <p>IB Diploma (39/45)<br><small>2020–2022</small></p>
                 </div>
             </div>
@@ -233,23 +300,24 @@
                     </div>
                 </div>
             </div>
+
             <div class="tl-item">
                 <div class="tl-year">2023</div>
-            <div class="tl-card">
-                <div class="tl-tag award">Volunteering</div>
-                <h3>Project Leader — Daunis Gente Excepcional IAP</h3>
-                <p>Increased revenue for the foundation by redesigning the stations layout to improve staff communication and operational flow.</p>
+                <div class="tl-card">
+                    <div class="tl-tag award">Volunteering</div>
+                    <h3>Project Leader — Daunis Gente Excepcional IAP</h3>
+                    <p>Increased revenue for the foundation by redesigning the stations layout to improve staff communication and operational flow.</p>
+                </div>
             </div>
-</div>
 
-<div class="tl-item">
-    <div class="tl-year">2022</div>
-    <div class="tl-card">
-        <div class="tl-tag green">Community</div>
-        <h3>Volunteer — Proyecto Sandwich</h3>
-        <p>Community outreach brigades distributing meals to families waiting outside hospitals.</p>
-    </div>
-</div>
+            <div class="tl-item">
+                <div class="tl-year">2022</div>
+                <div class="tl-card">
+                    <div class="tl-tag green">Community</div>
+                    <h3>Volunteer — Proyecto Sandwich</h3>
+                    <p>Community outreach brigades distributing meals to families waiting outside hospitals.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -268,16 +336,16 @@
                 <span>🇯🇵 Japan</span><span>·</span>
                 <span>🇹🇭 Thailand</span><span>·</span>
                 <span>🇮🇩 Indonesia</span><span>·</span>
+                <span>🇰🇷 Korea</span><span>·</span>
                 <span>🇲🇾 Malaysia</span><span>·</span>
                 <span>🇻🇳 Vietnam</span><span>·</span>
-                <span>🇰🇷 Korea</span>
                 <span>🇸🇬 Singapore</span><span>·</span>
                 <span>🇯🇵 Japan</span><span>·</span>
                 <span>🇹🇭 Thailand</span><span>·</span>
                 <span>🇮🇩 Indonesia</span><span>·</span>
+                <span>🇰🇷 Korea</span><span>·</span>
                 <span>🇲🇾 Malaysia</span><span>·</span>
                 <span>🇻🇳 Vietnam</span><span>·</span>
-                <span>🇰🇷 Korea</span>
             </div>
         </div>
 
@@ -303,7 +371,7 @@
                     <span>Streets, chaos, beauty</span>
                 </div>
             </div>
-            <div class="atlas-card ac-small">
+            <div class="atlas-card ac-big">
                 <div class="atlas-emoji">🏛️</div>
                 <div class="atlas-info">
                     <strong>Seoul</strong>
@@ -324,7 +392,7 @@
     <section id="music">
         <div class="section-label">004 — THE PLAYLIST</div>
         <h2 class="section-title"><em>Music</em> as a language</h2>
-        <p class="music-desc">From afrobeats to r&b, 80's rock to electronic — music is how I process the world. Every city I visited had a soundtrack. Every project has a playlist.</p>
+        <p class="music-desc">From reggaeton to shoegaze, cumbia to J-pop — music is how I process the world. Every city I visited had a soundtrack. Every project has a playlist.</p>
 
         <div class="vinyl-stage">
             <div class="big-vinyl" id="bigVinyl">
@@ -336,14 +404,14 @@
                 <div class="needle"></div>
             </div>
             <div class="genre-cloud">
-                <span class="genre g1">80's Rock</span>
-                <span class="genre g2">Rap</span>
-                <span class="genre g3">Afrobeats</span>
-                <span class="genre g4">Pop</span>
-                <span class="genre g5">Dance</span>
-                <span class="genre g6">New Age</span>
-                <span class="genre g7">R&B</span>
-                <span class="genre g8">Bossa Nova</span>
+                <span class="genre g1">Afrobeats</span>
+                <span class="genre g2">80's Rock</span>
+                <span class="genre g3">Pop</span>
+                <span class="genre g4">R&B</span>
+                <span class="genre g5">Electronic</span>
+                <span class="genre g6">Rap</span>
+                <span class="genre g7">New Age</span>
+                <span class="genre g8">Dance</span>
                 <span class="genre g9">Electronic</span>
                 <span class="genre g10">Hip-Hop</span>
             </div>
@@ -356,7 +424,7 @@
         <h2 class="contact-title">Let's build something <em>worth building.</em></h2>
         <p class="contact-sub">Open to conversations about data, sustainability, strategy, and everything in between.</p>
         <div class="contact-links">
-            <a href="mailto:lirahdz.tania@gmail.com" class="contact-link">
+            <a href="/cdn-cgi/l/email-protection#f286939c9b93b2978a939f829e97dc919d9f" class="contact-link">
                 <span>✉</span> email
             </a>
             <a href="https://www.linkedin.com/in/tania-hernandez-lira-datascience-businesseng/" class="contact-link">
@@ -382,6 +450,4 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
-</body>
-</html>
+    <script da
