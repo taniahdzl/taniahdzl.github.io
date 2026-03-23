@@ -19,19 +19,14 @@ window.addEventListener('scroll', () => {
 });
 
 
-/* --- OBJECT CAROUSEL --- */
+/* --- OBJECT CAROUSEL (auto-rotate, no buttons needed) --- */
 const ocarTrack  = document.getElementById('ocarTrack');
 const ocarDots   = document.getElementById('ocarDots');
-const ocarPrev   = document.getElementById('ocarPrev');
-const ocarNext   = document.getElementById('ocarNext');
 const slides     = document.querySelectorAll('.ocar-slide');
 const slideCount = slides.length;
 let ocarIndex    = 0;
-let ocarAuto;
 
-console.log('Carousel initialized:', { slideCount, ocarPrev, ocarNext, ocarTrack });
-
-// Build dots
+// Build dots — clicking still lets user jump to a slide
 if (ocarDots) {
     slides.forEach((_, i) => {
         const d = document.createElement('div');
@@ -44,44 +39,22 @@ if (ocarDots) {
 
 function ocarGo(index) {
     ocarIndex = (index + slideCount) % slideCount;
-    console.log('Moving to slide:', ocarIndex);
-    
-    if (ocarTrack) {
-        ocarTrack.style.transform = `translateX(-${ocarIndex * 100}%)`;
-    }
-    
+    if (ocarTrack) ocarTrack.style.transform = `translateX(-${ocarIndex * 100}%)`;
     document.querySelectorAll('.ocar-dot').forEach((d, i) => {
         d.classList.toggle('active', i === ocarIndex);
     });
-    
-    // Restart float animation on active slide
     slides.forEach((s, i) => {
         s.style.animationPlayState = i === ocarIndex ? 'running' : 'paused';
     });
-    
-    resetOcarAuto();
 }
 
-// Attach click listeners to buttons
-if (ocarPrev) {
-    ocarPrev.addEventListener('click', (e) => {
-        console.log('Previous button clicked');
-        ocarGo(ocarIndex - 1);
-    });
-} else {
-    console.warn('Previous button not found');
+// Auto-advance every 2.5 s — no buttons needed
+if (slideCount > 0) {
+    ocarGo(0);
+    setInterval(() => ocarGo(ocarIndex + 1), 2500);
 }
 
-if (ocarNext) {
-    ocarNext.addEventListener('click', (e) => {
-        console.log('Next button clicked');
-        ocarGo(ocarIndex + 1);
-    });
-} else {
-    console.warn('Next button not found');
-}
-
-// Touch / swipe support
+// Swipe support on touch screens
 let ocarTouchX = null;
 if (ocarTrack) {
     ocarTrack.addEventListener('touchstart', e => { ocarTouchX = e.touches[0].clientX; }, { passive: true });
@@ -91,20 +64,6 @@ if (ocarTrack) {
         if (Math.abs(diff) > 40) ocarGo(ocarIndex + (diff < 0 ? 1 : -1));
         ocarTouchX = null;
     });
-}
-
-function resetOcarAuto() {
-    clearInterval(ocarAuto);
-    ocarAuto = setInterval(() => {
-        ocarGo(ocarIndex + 1);
-    }, 4000);
-}
-
-// Initialize carousel with auto-rotation
-if (slideCount > 0) {
-    ocarGo(0);
-    console.log('Carousel auto-rotation started');
-}
 }
 
 
