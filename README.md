@@ -1,6 +1,7 @@
 # Tania's Portfolio
 
-A beautifully designed, interactive portfolio website showcasing Tania's journey as a Data Scientist, Business Engineer, and builder. Built with vanilla HTML, CSS, and JavaScript, deployed on GitHub Pages.
+Interactive portfolio website showcasing my journey as a Data Scientist and Business Engineer.
+Built with vanilla HTML, CSS, and JavaScript, deployed on GitHub Pages.
 
 **Live site:** [taniahdzl.github.io](https://taniahdzl.github.io)
 
