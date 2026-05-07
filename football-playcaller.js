@@ -355,8 +355,15 @@
     ctx       = canvas.getContext('2d');
     tooltipEl = document.getElementById('fp-tooltip');
 
-    canvas.width  = CW;
-    canvas.height = CH;
+    // ── DPR FIX ──
+    var dpr = window.devicePixelRatio || 1;
+    canvas.width  = CW * dpr;
+    canvas.height = CH * dpr;
+    canvas.style.width  = CW + 'px';
+    canvas.style.height = CH + 'px';
+    ctx.scale(dpr, dpr);
+    // ─────────────
+
     computeLOS();
 
     // Close
