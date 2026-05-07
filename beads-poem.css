@@ -1,0 +1,294 @@
+/* ============================================
+   BEADS POEM OVERLAY
+   Add at the bottom of style.css
+   (after the football-playcaller block)
+   ============================================ */
+
+/* ---------- OVERLAY BACKDROP ---------- */
+#bp-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    background: rgba(26, 26, 26, 0.55);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+}
+#bp-overlay.bp-overlay--open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* ---------- MODAL SHELL ---------- */
+.bp-modal {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-mono);
+    border-radius: 20px;
+    width: 100%;
+    max-width: 640px;
+    max-height: 88vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 40px 120px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(26, 26, 26, 0.07);
+    transform: translateY(24px) scale(0.97);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 48px 36px 40px;
+    gap: 0;
+    text-align: center;
+}
+#bp-overlay.bp-overlay--open .bp-modal {
+    transform: translateY(0) scale(1);
+}
+
+/* ---------- CLOSE ---------- */
+.bp-close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(26, 26, 26, 0.07);
+    border: 1px solid rgba(26, 26, 26, 0.14);
+    color: var(--ink-light);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+.bp-close-btn:hover {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--bg);
+}
+
+/* ---------- HINT ---------- */
+.bp-hint {
+    position: absolute;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.58rem;
+    letter-spacing: 2.5px;
+    color: #bbb;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+.bp-hint.bp-hint--hidden { opacity: 0; }
+
+/* ---------- COUNTER ---------- */
+.bp-counter {
+    position: absolute;
+    top: 1rem;
+    right: 3.5rem;
+    font-size: 0.58rem;
+    letter-spacing: 2px;
+    color: #ddd;
+    text-transform: uppercase;
+}
+
+/* ---------- BEADS ---------- */
+.bp-beads-wrap {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 44px;
+    margin-top: 8px;
+}
+
+/* The thread behind the beads */
+.bp-thread {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    right: 10%;
+    height: 3px;
+    background: linear-gradient(90deg, rgba(196,154,60,0.15), rgba(196,154,60,0.35), rgba(196,154,60,0.15));
+    border-radius: 2px;
+    transform: translateY(-50%);
+    transition: opacity 0.8s ease;
+    z-index: 0;
+}
+.bp-thread.bp-thread--broken { opacity: 0; }
+
+.bp-beads {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Individual bead */
+.bp-bead {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-ui);
+    font-weight: 800;
+    font-size: 1.1rem;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.22),
+        inset 0 -2px 0 rgba(0, 0, 0, 0.1);
+    user-select: none;
+}
+.bp-bead:hover { transform: translateY(-5px) scale(1.1); }
+.bp-bead:not(:first-child):hover ~ .bp-bead { opacity: 0.5; } /* dim unrevealed ones on hover */
+
+/* Bead shine */
+.bp-bead::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 12px;
+    width: 12px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+    transform: rotate(-20deg);
+}
+
+/* Unravel animation */
+.bp-bead.bp-bead--unraveling {
+    animation: bp-unravel 0.5s ease forwards;
+}
+.bp-bead.bp-bead--gone {
+    opacity: 0;
+    transform: translateY(18px) scale(0.4);
+    pointer-events: none;
+}
+@keyframes bp-unravel {
+    0%   { transform: rotate(0deg)    scale(1);    opacity: 1; }
+    25%  { transform: rotate(-14deg)  scale(1.12); opacity: 1; }
+    60%  { transform: rotate(9deg)    scale(0.92); opacity: 0.7; }
+    100% { transform: translateY(18px) scale(0.4); opacity: 0; }
+}
+
+/* ---------- POEM ---------- */
+.bp-poem {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    min-height: 80px;
+}
+
+.bp-line {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 1.45rem;
+    line-height: 1.55;
+    color: var(--ink);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    letter-spacing: -0.2px;
+}
+.bp-line.bp-line--visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.bp-line em {
+    font-style: normal;
+    color: var(--green);
+    font-weight: 700;
+}
+.bp-line.bp-line--accent { color: var(--red); }
+.bp-line.bp-line--small {
+    font-family: var(--font-mono);
+    font-style: normal;
+    font-size: 0.68rem;
+    letter-spacing: 2px;
+    color: #bbb;
+    margin-top: 4px;
+    text-transform: lowercase;
+}
+
+/* Stanza divider */
+.bp-divider {
+    width: 1px;
+    height: 28px;
+    background: rgba(26, 26, 26, 0.1);
+    margin: 14px auto;
+    border-radius: 1px;
+}
+
+/* ---------- RESTART ---------- */
+.bp-restart {
+    margin-top: 32px;
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #bbb;
+    background: transparent;
+    border: 1px solid rgba(26, 26, 26, 0.12);
+    border-radius: 50px;
+    padding: 7px 18px;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease, color 0.15s, border-color 0.15s, background 0.15s;
+}
+.bp-restart.bp-restart--show {
+    opacity: 1;
+    pointer-events: all;
+}
+.bp-restart:hover {
+    color: var(--ink);
+    border-color: rgba(26, 26, 26, 0.3);
+    background: rgba(26, 26, 26, 0.04);
+}
+
+/* ---------- BEADS HOVER HINT ---------- */
+.beads-obj { position: relative; }
+.beads-obj::after {
+    content: 'click to explore →';
+    position: absolute;
+    bottom: -1.8rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 2px;
+    color: var(--ink-light);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    white-space: nowrap;
+    pointer-events: none;
+}
+.beads-obj:hover::after { opacity: 0.7; }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 600px) {
+    .bp-modal   { padding: 40px 20px 32px; border-radius: 16px; }
+    .bp-bead    { width: 44px; height: 44px; font-size: 0.95rem; }
+    .bp-line    { font-size: 1.2rem; }
+}

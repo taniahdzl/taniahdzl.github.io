@@ -19,6 +19,40 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
+    /* --- 3D CAROUSEL ARROW NAVIGATION --- */
+    var slider = document.getElementById('carouselSlider');
+    var prevBtn = document.getElementById('carouselPrev');
+    var nextBtn = document.getElementById('carouselNext');
+
+    if (slider && prevBtn && nextBtn) {
+        var currentRotation = 0;
+        var quantity = 7;
+        var anglePerItem = 360 / quantity;
+        var isAnimating = false;
+
+        function rotateCarousel(targetRotation) {
+            if (isAnimating) return;
+            isAnimating = true;
+
+            currentRotation = targetRotation % 360;
+            slider.style.transition = 'transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            slider.style.transform = 'perspective(1000px) rotateX(-16deg) rotateY(' + currentRotation + 'deg)';
+
+            setTimeout(function() {
+                slider.style.transition = '';
+                isAnimating = false;
+            }, 600);
+        }
+
+        prevBtn.addEventListener('click', function() {
+            rotateCarousel(currentRotation - anglePerItem);
+        });
+
+        nextBtn.addEventListener('click', function() {
+            rotateCarousel(currentRotation + anglePerItem);
+        });
+    }
+
     /* --- OBJECT CAROUSEL --- */
     var track  = document.getElementById('ocarTrack');
     var dotBox = document.getElementById('ocarDots');

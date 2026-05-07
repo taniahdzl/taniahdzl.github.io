@@ -1,0 +1,448 @@
+/* ============================================
+   FLIGHT SIMULATOR OVERLAY
+   Add this at the bottom of style.css
+   ============================================ */
+
+/* ---------- OVERLAY BACKDROP ---------- */
+#fs-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+    background: rgba(26, 26, 26, 0.55);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+}
+#fs-overlay.fs-overlay--open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* ---------- MODAL SHELL ---------- */
+.fs-modal {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-mono);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 760px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 40px 120px rgba(0, 0, 0, 0.22), 0 0 0 1px rgba(26, 26, 26, 0.08);
+    transform: translateY(24px) scale(0.97);
+    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+#fs-overlay.fs-overlay--open .fs-modal {
+    transform: translateY(0) scale(1);
+}
+
+/* ---------- CLOSE BUTTON ---------- */
+.fs-close-btn {
+    position: absolute;
+    top: 0.8rem;
+    right: 0.8rem;
+    z-index: 10;
+    background: rgba(26, 26, 26, 0.07);
+    border: 1px solid rgba(26, 26, 26, 0.15);
+    color: var(--ink-light);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.fs-close-btn:hover {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--bg);
+}
+
+/* ---------- TERMINAL VIEW ---------- */
+.fs-terminal {
+    display: flex;
+    flex-direction: column;
+    min-height: 500px;
+    background: var(--bg);
+}
+
+/* FIDS header stays dark — airport screen aesthetic */
+.fs-term-header {
+    background: #111520;
+    border-bottom: 1px solid #2a3040;
+    padding: 0.9rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 16px 16px 0 0;
+}
+.fs-term-logo {
+    font-family: var(--font-ui);
+    font-weight: 800;
+    font-size: 0.8rem;
+    letter-spacing: 4px;
+    color: var(--gold);
+}
+.fs-term-clock {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 2px;
+}
+.fs-board-label {
+    padding: 0.85rem 1.5rem 0.4rem;
+    font-size: 0.62rem;
+    letter-spacing: 3px;
+    color: var(--ink-light);
+    text-transform: uppercase;
+    opacity: 0.6;
+}
+
+/* ---------- FIDS BOARD (dark — airport aesthetic) ---------- */
+.fs-fids-board {
+    background: #06080f;
+    margin: 0 1rem 0.5rem;
+    border-radius: 8px;
+    border: 1px solid rgba(26, 26, 26, 0.15);
+    overflow: hidden;
+    flex: 1;
+}
+.fs-fids-head {
+    display: grid;
+    grid-template-columns: 60px 1fr 90px 60px 90px;
+    padding: 0.5rem 1rem;
+    background: #0d1420;
+    border-bottom: 1px solid #1a2030;
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    color: rgba(255, 255, 255, 0.25);
+    text-transform: uppercase;
+}
+.fs-fids-row {
+    display: grid;
+    grid-template-columns: 60px 1fr 90px 60px 90px;
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid #0f1520;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+.fs-fids-row:last-child { border-bottom: none; }
+.fs-fids-row:hover      { background: #111825; }
+.fs-fids-row.fs-selected {
+    background: #1a2535;
+    border-left: 3px solid var(--gold);
+    padding-left: calc(1rem - 3px);
+}
+.fs-fids-time   { font-size: 0.78rem; color: var(--gold); }
+.fs-fids-dest   {
+    font-family: var(--font-ui);
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: #e8dcc8;
+    line-height: 1.3;
+}
+.fs-fids-dest small {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    color: rgba(255, 255, 255, 0.28);
+    font-weight: 400;
+    margin-top: 1px;
+}
+.fs-fids-flight { font-size: 0.65rem; color: rgba(255, 255, 255, 0.22); }
+.fs-fids-gate   { font-size: 0.78rem; color: var(--green-light); }
+.fs-fids-status { font-size: 0.6rem;  letter-spacing: 1px; text-transform: uppercase; }
+.fs-status-boarding { color: var(--gold); animation: fs-blink 1.2s ease infinite; }
+.fs-status-ontime   { color: var(--green-light); }
+.fs-status-dep      { color: rgba(255, 255, 255, 0.2); }
+@keyframes fs-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+/* ---------- BOARD BUTTON ---------- */
+.fs-board-btn {
+    display: block;
+    margin: 0 1rem 0.8rem;
+    background: var(--ink);
+    color: var(--bg);
+    border: none;
+    padding: 0.85rem 1.5rem;
+    font-family: var(--font-ui);
+    font-weight: 800;
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 50px;
+    text-align: center;
+    transition: background 0.2s, transform 0.1s;
+    width: calc(100% - 2rem);
+}
+.fs-board-btn:hover:not(:disabled) { background: var(--green); }
+.fs-board-btn:active:not(:disabled){ transform: scale(0.98); }
+.fs-board-btn:disabled {
+    background: rgba(26, 26, 26, 0.07);
+    color: rgba(26, 26, 26, 0.25);
+    cursor: not-allowed;
+}
+
+/* ---------- TICKER ---------- */
+.fs-ticker {
+    background: var(--ink);
+    padding: 0.45rem 1rem;
+    font-size: 0.58rem;
+    color: rgba(255, 255, 255, 0.22);
+    letter-spacing: 1px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.fs-ticker-inner {
+    display: inline-block;
+    animation: fs-ticker 22s linear infinite;
+}
+@keyframes fs-ticker {
+    from { transform: translateX(100%); }
+    to   { transform: translateX(-100%); }
+}
+
+/* ---------- FLIGHT VIEW ---------- */
+.fs-flight {
+    flex-direction: column;
+    min-height: 500px;
+    background: var(--bg);
+}
+
+/* Window — dark border = airplane window frame */
+.fs-window-frame {
+    margin: 1rem;
+    border-radius: 40px / 28px;
+    overflow: hidden;
+    height: 210px;
+    border: 8px solid var(--ink);
+    background: #0a0d14;
+    flex-shrink: 0;
+    position: relative;
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.05);
+}
+.fs-window-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+.fs-sky {
+    position: absolute;
+    inset: 0;
+    transition: background 1.2s ease;
+}
+.fs-clouds {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+.fs-cloud {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 50px;
+    animation: fs-cloud-drift linear infinite;
+}
+@keyframes fs-cloud-drift {
+    from { transform: translateX(110%); }
+    to   { transform: translateX(-220px); }
+}
+.fs-wing {
+    position: absolute;
+    bottom: 18px;
+    right: -8px;
+    width: 160px;
+    height: 44px;
+    background: #d0d8e8;
+    border-radius: 4px 0 0 8px;
+    transform: perspective(200px) rotateY(-8deg);
+    opacity: 0.88;
+}
+.fs-wing::after {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 10px;
+    right: 0;
+    height: 3px;
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 2px;
+}
+.fs-stamp {
+    position: absolute;
+    top: 12px;
+    left: 14px;
+    background: rgba(242, 237, 230, 0.15);
+    border: 1px solid rgba(242, 237, 230, 0.35);
+    border-radius: 4px;
+    padding: 3px 9px;
+    font-size: 1.2rem;
+}
+.fs-alt-strip {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(26, 26, 26, 0.6);
+    padding: 4px 12px;
+    display: flex;
+    gap: 1.2rem;
+    font-size: 0.6rem;
+    color: var(--gold);
+    letter-spacing: 1.5px;
+}
+
+/* ---------- FLIGHT CONTENT (cream background) ---------- */
+.fs-flight-content {
+    padding: 0.9rem 1.2rem 1.2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+.fs-flight-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.fs-city {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-style: italic;
+    font-size: 2rem;
+    color: var(--ink);
+    letter-spacing: -1px;
+    line-height: 1;
+}
+.fs-country-label {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    color: var(--ink-light);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-top: 4px;
+    opacity: 0.6;
+}
+.fs-back-btn {
+    background: transparent;
+    border: 1px solid rgba(26, 26, 26, 0.2);
+    color: var(--ink-light);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 2px;
+    padding: 0.45rem 0.9rem;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: border-color 0.15s, background 0.15s, color 0.15s;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+.fs-back-btn:hover {
+    border-color: var(--ink);
+    color: var(--ink);
+    background: rgba(26, 26, 26, 0.05);
+}
+
+/* Passport stamp card */
+.fs-passport-stamp {
+    background: var(--cream);
+    border: 1px solid rgba(26, 26, 26, 0.07);
+    border-left: 4px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 1rem 1.1rem;
+    flex: 1;
+}
+.fs-ps-date {
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    color: var(--gold);
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+.fs-ps-note {
+    font-family: var(--font-ui);
+    font-size: 0.9rem;
+    color: var(--ink-light);
+    line-height: 1.7;
+    font-weight: 400;
+}
+.fs-ps-mood {
+    margin-top: 0.8rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+.fs-mood-tag {
+    background: rgba(196, 154, 60, 0.1);
+    border: 1px solid rgba(196, 154, 60, 0.28);
+    color: var(--gold);
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.5px;
+    padding: 3px 9px;
+    border-radius: 50px;
+}
+
+/* Nav dots */
+.fs-nav-dots {
+    display: flex;
+    gap: 7px;
+    justify-content: center;
+    padding: 0.2rem 0;
+}
+.fs-nav-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(26, 26, 26, 0.15);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.2s, transform 0.2s;
+}
+.fs-nav-dot--active {
+    background: var(--gold);
+    transform: scale(1.4);
+}
+
+/* ---------- BOARDING PASS HOVER HINT ---------- */
+.boarding-obj { position: relative; }
+.boarding-obj::after {
+    content: 'tap to fly →';
+    position: absolute;
+    bottom: -1.8rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 2px;
+    color: var(--ink-light);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+    white-space: nowrap;
+    pointer-events: none;
+}
+.boarding-obj:hover::after { opacity: 0.7; }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 600px) {
+    .fs-modal { border-radius: 12px; }
+    .fs-fids-head,
+    .fs-fids-row { grid-template-columns: 50px 1fr 70px 46px; }
+    .fs-fids-head span:last-child,
+    .fs-fids-row .fs-fids-status { display: none; }
+    .fs-window-frame { height: 160px; }
+    .fs-city { font-size: 1.4rem; }
+}

@@ -1,36 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- ========== META & DOCUMENT SETUP ========== -->
-    <!-- Character encoding and viewport settings for responsive design -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tania — Portfolio</title>
-    
-    <!-- ========== STYLESHEETS & FONTS ========== -->
-    <!-- Main stylesheet for layout and component styling -->
+
     <link rel="stylesheet" href="style.css">
-    
-    <!-- Google Fonts import: Syne (headers), Fraunces (accent), DM Mono (code/labels) -->
+    <link rel="stylesheet" href="flight-simulator.css">
+    <link rel="stylesheet" href="huerto-garden.css">
+    <link rel="stylesheet" href="football-playcaller.css">
+    <link rel="stylesheet" href="beads-poem.css">
+    <link rel="stylesheet" href="aml-warroom.css">
+    <link rel="stylesheet" href="listening-room.css">
+    <link rel="stylesheet" href="strategy-portal.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- ========== CUSTOM CURSOR ELEMENTS ========== -->
-    <!-- Interactive custom cursor that follows mouse movement -->
-    <!-- Main cursor dot element -->
-    <div class="cursor" id="cursor"></div>
-    <!-- Cursor trail effect that creates a motion blur/trailing effect -->
+    <div class="cursor"       id="cursor"></div>
     <div class="cursor-trail" id="cursorTrail"></div>
 
-    <!-- ========== NAVIGATION BAR ========== -->
-    <!-- Fixed header with logo, navigation links, and availability status -->
+    <!-- ── NAV ── -->
     <nav class="nav" id="nav">
-        <!-- Portfolio name/logo with decorative dots -->
         <div class="nav-logo">T·A·N·I·A</div>
-        
-        <!-- Main navigation links with smooth scroll anchors -->
         <div class="nav-links">
             <a href="#hero">home</a>
             <a href="#about">about</a>
@@ -38,33 +32,36 @@
             <a href="#gallery">atlas</a>
             <a href="#contact">connect</a>
         </div>
-        
-        <!-- Availability status indicator with animated dot -->
         <div class="nav-status">
             <span class="status-dot"></span>
             <span>Available 2026</span>
         </div>
     </nav>
 
-    <!-- ========== HERO SECTION ========== -->
-    <!-- Main landing section with introduction and call-to-action -->
+    <!-- ── HERO ── -->
     <section id="hero">
-        <!-- 1. Title first -->
-        <div class="banner-center">
+
+        <!-- Name + tagline — centered above carousel -->
+        <div class="hero-intro">
             <div class="hero-tag">
                 <span>📍</span> Mexico City → Singapore → World
             </div>
             <h1 class="hero-title">
                 <span class="line">Data</span>
                 <span class="line italic">Scientist &amp;</span>
-                <span class="line">Builder</span>
+                <span class="line">Buisness</span>
+                <span class="line italic"> Engineer </span>
             </h1>
-            <p class="hero-sub">ITAM × NUS · Flag Football · Huerto · Music · Asia</p>
-            <a href="#about" class="btn-primary">Explore my world →</a>
+            <p class="hero-sub">ITAM × NUS · Flag Football · Huerto · Music</p>
+            <p class="hero-carousel-hint">click on the objects to explore →</p>
         </div>
-        <div class="banner" style="--quantity:8">
-            <div class="slider">
-                <!-- Vinyl -->
+
+        <!-- 3-D spinning carousel — full width, dominant -->
+        <div class="banner" style="--quantity:7">
+            <button class="carousel-arrow carousel-arrow--left" id="carouselPrev" aria-label="Previous"></button>
+            <div class="slider" id="carouselSlider">
+
+                <!-- 1 · Vinyl → Listening Room -->
                 <div class="item" style="--position:1">
                     <div class="ocar-slide vinyl-obj">
                         <div class="vinyl-disc">
@@ -74,7 +71,8 @@
                         <span class="obj-label">now playing</span>
                     </div>
                 </div>
-                <!-- Boarding pass -->
+
+                <!-- 2 · Boarding pass → Flight Simulator -->
                 <div class="item" style="--position:2">
                     <div class="ocar-slide boarding-obj">
                         <div class="boarding-pass">
@@ -90,10 +88,11 @@
                             <div class="bp-barcode"></div>
                             <div class="bp-name">TANIA / NUS 2025</div>
                         </div>
-                        <span class="obj-label">singapore exchange</span>
+                        <span class="obj-label">asia atlas</span>
                     </div>
                 </div>
-                <!-- Football -->
+
+                <!-- 3 · Football → Play Caller -->
                 <div class="item" style="--position:3">
                     <div class="ocar-slide football-obj">
                         <div class="football-field">
@@ -107,7 +106,8 @@
                         <span class="obj-label">flag football</span>
                     </div>
                 </div>
-                <!-- Plant -->
+
+                <!-- 4 · Plant → Huerto Garden -->
                 <div class="item" style="--position:4">
                     <div class="ocar-slide plant-obj">
                         <div class="plant-pot">
@@ -121,9 +121,10 @@
                         <span class="obj-label">huerto itam</span>
                     </div>
                 </div>
-                <!-- Data chart -->
+
+                <!-- 5 · AML chart → War Room -->
                 <div class="item" style="--position:5">
-                    <div class="ocar-slide chart-obj">
+                    <div class="ocar-slide aml-obj">
                         <div class="data-card">
                             <div class="dc-title">AML Dashboard</div>
                             <div class="dc-bars">
@@ -139,19 +140,21 @@
                         <span class="obj-label">data &amp; fintech</span>
                     </div>
                 </div>
-                <!-- Sticky note -->
+
+                <!-- 6 · Sticky note (strategy) → Mission -->
                 <div class="item" style="--position:6">
-                    <div class="ocar-slide note-obj">
+                    <div class="ocar-slide strategy-obj">
                         <div class="sticky-note">
                             <p>sustainable<br>business model</p>
                             <div class="note-lines">
                                 <div></div><div></div><div></div>
                             </div>
                         </div>
-                        <span class="obj-label">strategy</span>
+                        <span class="obj-label">my vision</span>
                     </div>
                 </div>
-                <!-- Beads -->
+
+                <!-- 7 · Beads → Poem -->
                 <div class="item" style="--position:7">
                     <div class="ocar-slide beads-obj">
                         <div class="beads">
@@ -164,41 +167,26 @@
                         <span class="obj-label">that's me</span>
                     </div>
                 </div>
-                <!-- Flower -->
-                <div class="item" style="--position:8">
-                    <div class="ocar-slide flower-obj">
-                        <div class="pressed-flower">
-                            <div class="pf-petal p1"></div>
-                            <div class="pf-petal p2"></div>
-                            <div class="pf-petal p3"></div>
-                            <div class="pf-petal p4"></div>
-                            <div class="pf-center"></div>
-                        </div>
-                        <span class="obj-label">nature lover</span>
-                    </div>
-                </div>
             </div>
+            <button class="carousel-arrow carousel-arrow--right" id="carouselNext" aria-label="Next"></button>
         </div>
+
+        <!-- Scroll cue -->
+        <div class="hero-scroll-cue">
+            <span>scroll</span>
+            <div class="scroll-line"></div>
+        </div>
+
     </section>
 
-    <!-- ========== ABOUT SECTION ========== -->
-    <!-- Personal introduction with collage of experiences and statistics -->
+    <!-- ── ABOUT ── -->
     <section id="about">
-        <!-- Section number and title -->
         <div class="section-label">001 — ABOUT</div>
-
-        <!-- Two-column layout: text intro + visual collage -->
         <div class="about-grid">
-            <!-- Left column: biographical text and language skills -->
             <div class="about-intro">
-                <!-- Main section heading -->
                 <h2 class="section-title">Building at the intersection of <em>data, design &amp; purpose</em></h2>
-                
-                <!-- Core biography paragraphs -->
                 <p>I'm Tania — a Data Science &amp; Business Engineering student at ITAM, Mexico City. I believe in building things that actually matter: from AML dashboards at a fintech to a self-sustaining university garden.</p>
                 <p>In 2025 I spent a semester at NUS Singapore — and kept going. Seven countries across Asia later, I see the world differently.</p>
-                
-                <!-- Language skills displayed as pill badges -->
                 <div class="lang-pills">
                     <span class="pill">🇲🇽 Español</span>
                     <span class="pill">🇺🇸 English</span>
@@ -206,50 +194,41 @@
                     <span class="pill">🇸🇬 中文 (a bit)</span>
                 </div>
             </div>
-
-        <!-- ========== STATISTICS ROW ========== -->
-        <!-- Key achievements and metrics displayed as stat cards -->
-        <div class="stats-row">
-            <!-- Stat 1: Countries explored -->
-            <div class="stat">
-                <div class="stat-number">7</div>
-                <div class="stat-label">Asian countries explored</div>
-            </div>
-            <!-- Stat 2: Languages -->
-            <div class="stat">
-                <div class="stat-number">4</div>
-                <div class="stat-label">Languages spoken</div>
-            </div>
-            <!-- Stat 3: Huerto leadership -->
-            <div class="stat">
-                <div class="stat-number">3+</div>
-                <div class="stat-label">Years building Huerto ITAM</div>
-            </div>
-            <!-- Stat 4: Music playlists -->
-            <div class="stat">
-                <div class="stat-number">∞</div>
-                <div class="stat-label">Playlists in rotation</div>
+            <div class="stats-row">
+                <div class="stat">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">Asian countries explored</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Languages spoken</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">4+</div>
+                    <div class="stat-label">Years building Huerto ITAM</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Playlists in rotation</div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== EXPERIENCE & EDUCATION SECTION ========== -->
-    <!-- Chronological timeline of work experience, education, and achievements -->
+    <!-- ── EXPERIENCE ── -->
     <section id="experience">
-        <!-- Section number and title -->
         <div class="section-label">002 — EXPERIENCE &amp; EDUCATION</div>
         <h2 class="section-title">The <em>chapters</em> so far</h2>
-
-        <!-- Timeline container with 8 items -->
         <div class="timeline">
+
             <div class="tl-item">
-                <div class="tl-year">2025</div>
+                <div class="tl-year">2026 →</div>
                 <div class="tl-card">
-                    <div class="tl-tag fintech">Fintech · Data</div>
-                    <h3>Business Architect Intern — Klar</h3>
-                    <p>Built AML risk dashboards in Tableau &amp; Metabase. Worked with SQL, dbt, and GitHub to structure transactional data pipelines inside a regulated fintech environment.</p>
+                    <div class="tl-tag fintech">Fintech · AML</div>
+                    <h3>AML Analyst Part-time — Klar</h3>
+                    <p>Continuing part-time in the AML risk team — reviewing transaction patterns, flagging suspicious flows, and supporting compliance processes inside a leading Mexican fintech.</p>
                     <div class="tl-skills">
-                        <span>SQL</span><span>Tableau</span><span>dbt</span><span>AML</span>
+                        <span>SQL</span><span>Tableau</span><span>AML</span><span>FATF</span>
                     </div>
                 </div>
             </div>
@@ -259,9 +238,21 @@
                 <div class="tl-card">
                     <div class="tl-tag asia">Exchange · Asia</div>
                     <h3>Exchange Student — NUS Singapore</h3>
-                    <p>Immersive semester in Asia. Broadened my perspective on tech, business, and culture — then kept travelling across the continent.</p>
+                    <p>Immersive semester in Asia. Broadened my perspective on tech, business, and culture — then kept travelling across 7 countries.</p>
                     <div class="tl-skills">
                         <span>🇸🇬</span><span>🇯🇵</span><span>🇹🇭</span><span>🇮🇩</span><span>+ more</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tl-item">
+                <div class="tl-year">2025</div>
+                <div class="tl-card">
+                    <div class="tl-tag fintech">Fintech · Data</div>
+                    <h3>Business Architect Summer Intern — Klar</h3>
+                    <p>Built AML risk dashboards in Tableau &amp; Metabase. Worked with SQL, dbt, and GitHub to structure transactional data pipelines inside a regulated fintech environment.</p>
+                    <div class="tl-skills">
+                        <span>SQL</span><span>Tableau</span><span>dbt</span><span>AML</span>
                     </div>
                 </div>
             </div>
@@ -276,13 +267,13 @@
             </div>
 
             <div class="tl-item">
-                <div class="tl-year">2022 →</div>
+                <div class="tl-year">2026 →</div>
                 <div class="tl-card">
                     <div class="tl-tag green">Sustainability</div>
-                    <h3>Vice-President — Huerto ITAM</h3>
-                    <p>Designed and implemented a community engagement strategy and business model to keep the garden financially and environmentally sustainable long-term.</p>
+                    <h3>Presidenta — Huerto ITAM</h3>
+                    <p>Leading the garden as Presidenta since 2026, after serving as VP from 2022. Designed and implemented the self-sustaining business model that keeps the garden financially and environmentally independent.</p>
                     <div class="tl-skills">
-                        <span>Strategy</span><span>Community</span><span>Sustainability</span>
+                        <span>Leadership</span><span>Strategy</span><span>Sustainability</span>
                     </div>
                 </div>
             </div>
@@ -316,25 +307,19 @@
                     <p>Community outreach brigades distributing meals to families waiting outside hospitals.</p>
                 </div>
             </div>
+
         </div>
     </section>
 
-    <!-- ========== ASIA ATLAS / GALLERY SECTION ========== -->
-    <!-- Visual showcase of Asian travel experiences with postcards and marquee -->
+    <!-- ── ASIA ATLAS ── -->
     <section id="gallery">
-        <!-- Section number and title -->
         <div class="section-label">003 — ASIA ATLAS</div>
         <h2 class="section-title">The semester that <em>changed everything</em></h2>
-
-        <!-- Introductory paragraph for the Asia travel section -->
         <div class="atlas-intro">
             <p>NUS was the start. Then I kept going — temple hopping in Kyoto, street food in Bangkok, night markets in Korea. Asia rewired how I think about scale, community, and possibility.</p>
         </div>
 
-        <!-- ========== ANIMATED COUNTRY MARQUEE ========== -->
-        <!-- Scrolling marquee displaying visited countries (loops infinitely) -->
         <div class="country-marquee">
-            <!-- Track that scrolls horizontally with country names -->
             <div class="marquee-track">
                 <span>🇸🇬 Singapore</span><span>·</span>
                 <span>🇯🇵 Japan</span><span>·</span>
@@ -353,160 +338,104 @@
             </div>
         </div>
 
-    <div class="postcard-grid">
-
-        <!-- KYOTO -->
-        <div class="postcard pc-kyoto">
-            <div class="pc-stamp">🇯🇵</div>
-            <div class="pc-postmark">NOV 2025</div>
-            <div class="pc-visual">
-                <img src="img/Osaka.JPG" alt="Osaka Castle, Japan">
+        <div class="postcard-grid">
+            <div class="postcard pc-kyoto">
+                <div class="pc-stamp">🇯🇵</div>
+                <div class="pc-postmark">NOV 2025</div>
+                <div class="pc-visual">
+                    <img src="img/Osaka.JPG" alt="Osaka Castle, Japan">
+                </div>
+                <div class="pc-body">
+                    <div class="pc-city">KYOTO</div>
+                    <div class="pc-country">Japan</div>
+                    <p class="pc-note">Ancient temples, matcha everything, bamboo forests at dawn.</p>
+                </div>
             </div>
-            <div class="pc-body">
-                <div class="pc-city">KYOTO</div>
-                <div class="pc-country">Japan</div>
-                <p class="pc-note">Ancient temples, matcha everything, bamboo forests at dawn.</p>
+            <div class="postcard pc-singapore">
+                <div class="pc-stamp">🇸🇬</div>
+                <div class="pc-postmark">AUG–DEC 2025</div>
+                <div class="pc-visual pc-visual-sg">
+                    <img src="img/Singapore.JPG" alt="Marina Bay Sands, Singapore">
+                </div>
+                <div class="pc-body">
+                    <div class="pc-city">SINGAPORE</div>
+                    <div class="pc-country">City-State</div>
+                    <p class="pc-note">Home for 5 months. NUS, hawker centres, and the best transit system in the world.</p>
+                </div>
             </div>
-        </div>
-
-        <!-- SINGAPORE -->
-        <div class="postcard pc-singapore">
-            <div class="pc-stamp">🇸🇬</div>
-            <div class="pc-postmark">AUG–DEC 2025</div>
-            <div class="pc-visual pc-visual-sg">
-                <img src="img/Singapore.JPG" alt="Marina Bay Sands, Singapore">
+            <div class="postcard pc-bangkok">
+                <div class="pc-stamp">🇹🇭</div>
+                <div class="pc-postmark">OCT 2025</div>
+                <div class="pc-visual pc-visual-bkk">
+                    <img src="img/Bangkok.JPG" alt="Temple, Bangkok">
+                </div>
+                <div class="pc-body">
+                    <div class="pc-city">BANGKOK</div>
+                    <div class="pc-country">Thailand</div>
+                    <p class="pc-note">Streets, controlled chaos, temples at every corner, and the best street food on Earth.</p>
+                </div>
             </div>
-            <div class="pc-body">
-                <div class="pc-city">SINGAPORE</div>
-                <div class="pc-country">City-State</div>
-                <p class="pc-note">Home for 5 months. NUS, hawker centres, and the best transit system in the world.</p>
-            </div>
-        </div>
-
-        <!-- BANGKOK -->
-        <div class="postcard pc-bangkok">
-            <div class="pc-stamp">🇹🇭</div>
-            <div class="pc-postmark">OCT 2025</div>
-            <div class="pc-visual pc-visual-bkk">
-                <img src="img/Bangkok.JPG" alt="Temple, Bangkok">
-            </div>
-            <div class="pc-body">
-                <div class="pc-city">BANGKOK</div>
-                <div class="pc-country">Thailand</div>
-                <p class="pc-note">Streets, controlled chaos, temples at every corner, and the best street food on Earth.</p>
-            </div>
-        </div>
-
-        <!-- SEOUL -->
-        <div class="postcard pc-seoul">
-            <div class="pc-stamp">🇰🇷</div>
-            <div class="pc-postmark">NOV 2025</div>
-            <div class="pc-visual pc-visual-seoul">
-                <img src="img/Seoul.JPG" alt="Buddha, Seoul">
-            </div>
-            <div class="pc-body">
-                <div class="pc-city">SEOUL</div>
-                <div class="pc-country">South Korea</div>
-                <p class="pc-note">Palaces, K-indie playlists on the subway, street food in Myeongdong.</p>
+            <div class="postcard pc-seoul">
+                <div class="pc-stamp">🇰🇷</div>
+                <div class="pc-postmark">NOV 2025</div>
+                <div class="pc-visual pc-visual-seoul">
+                    <img src="img/Seoul.JPG" alt="Buddha, Seoul">
+                </div>
+                <div class="pc-body">
+                    <div class="pc-city">SEOUL</div>
+                    <div class="pc-country">South Korea</div>
+                    <p class="pc-note">Palaces, K-indie playlists on the subway, street food in Myeongdong.</p>
+                </div>
             </div>
         </div>
 
-    </div>  
-        <!-- ========== ATLAS FOOTER SUMMARY ========== -->
-        <!-- Summary statistics of the Asia travel experience -->
         <div class="atlas-footer">
             <span class="atlas-footer-num">7</span>
             <span class="atlas-footer-text">countries · 5 months · countless playlists · one semester that changed everything</span>
         </div>
     </section>
 
-    <!-- ========== MUSIC SECTION ========== -->
-    <!-- Celebrates music as a key interest with vinyl record and genre cloud -->
-    <section id="music">
-        <!-- Section number and title -->
-        <div class="section-label">004 — THE PLAYLIST</div>
-        <h2 class="section-title"><em>Music</em> as a language</h2>
-        <!-- Description of music's role in personal identity -->
-        <p class="music-desc">From afrobeats to r&b, electronic to pop — music is how I process the world. Every city I visited had a soundtrack. Every project has a playlist.</p>
-
-        <!-- ========== VINYL RECORD DISPLAY ========== -->
-        <!-- Animated vinyl record with genre cloud -->
-        <div class="vinyl-stage">
-            <!-- Large rotating vinyl record with label and needle -->
-            <div class="big-vinyl" id="bigVinyl">
-                <div class="vinyl-groove"></div>
-                <div class="vinyl-label">
-                    <span>TANIA'S</span>
-                    <span>MIX</span>
-                </div>
-                <div class="needle"></div>
-            </div>
-            <!-- Cloud of music genres as tags -->
-            <div class="genre-cloud">
-                <span class="genre g1">Afrobeats</span>
-                <span class="genre g2">80's Rock</span>
-                <span class="genre g3">Pop</span>
-                <span class="genre g4">R&B</span>
-                <span class="genre g5">Electronic</span>
-                <span class="genre g6">Rap</span>
-                <span class="genre g7">New Age</span>
-                <span class="genre g8">Dance</span>
-                <span class="genre g9">Electronic</span>
-                <span class="genre g10">Hip-Hop</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- ========== CONTACT & FOOTER SECTION ========== -->
-    <!-- Call-to-action for connecting and project collaboration -->
+    <!-- ── CONTACT ── -->
     <section id="contact">
-        <!-- Section number and title -->
-        <div class="section-label">005 — CONNECT</div>
+        <div class="section-label">004 — CONNECT</div>
         <h2 class="contact-title">Let's build something <em>worth building.</em></h2>
-        <!-- Brief description of open collaboration areas -->
         <p class="contact-sub">Open to conversations about data, sustainability, strategy, and everything in between.</p>
-        
-        <!-- ========== SOCIAL & CONTACT LINKS ========== -->
-        <!-- Three main contact methods with social links -->
         <div class="contact-links">
-            <!-- Email contact link (protected) -->
             <a href="/cdn-cgi/l/email-protection#f292939c9b93b2978a939f829e97dc919d9f" class="contact-link">
                 <span>✉</span> email
             </a>
-            <!-- LinkedIn profile link -->
             <a href="https://www.linkedin.com/in/tania-hernandez-lira-datascience-businesseng/" class="contact-link">
                 <span>in</span> linkedin
             </a>
-            <!-- GitHub profile link -->
             <a href="https://github.com/taniahdzl" class="contact-link">
                 <span>↗</span> github
             </a>
         </div>
-        
-        <!-- ========== FOOTER & CREDITS ========== -->
-        <!-- Copyright and creator information -->
         <div class="footer-note">
             Designed &amp; built by Tania · ITAM 2026 · Mexico City 🌮 ↔ Singapore 🦁
         </div>
     </section>
 
-    <!-- ========== FLOATING MUSIC WIDGET ========== -->
-    <!-- Fixed floating element showing current music status (bottom right) -->
+    <!-- ── FLOATING MUSIC WIDGET ── -->
     <div class="music-widget" id="musicWidget">
-        <!-- Animated music disc icon -->
         <div class="music-disc" id="musicDisc">🎵</div>
-        <!-- Music info: title and progress bar -->
         <div class="music-info">
             <div class="music-title">Tania's Mix</div>
-            <!-- Animated progress bar for music playback -->
             <div class="music-bar">
                 <div class="music-progress"></div>
             </div>
         </div>
     </div>
-    
-    <!-- ========== JAVASCRIPT ========== -->
-    <!-- Main script for interactive functionality: cursor tracking, carousel, animations -->
+
+    <!-- ── SCRIPTS ── -->
     <script src="script.js"></script>
+    <script src="flight-simulator.js"></script>
+    <script src="huerto-garden.js"></script>
+    <script src="football-playcaller.js"></script>
+    <script src="beads-poem.js"></script>
+    <script src="aml-warroom.js"></script>
+    <script src="listening-room.js"></script>
+    <script src="strategy-portal.js"></script>
+
 </body>
 </html>
