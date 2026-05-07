@@ -205,7 +205,7 @@ var STANZAS = [
     // Wire carousel trigger
     document.querySelectorAll('.beads-obj').forEach(function (el) {
       el.style.cursor = 'pointer';
-      el.setAttribute('title', 'Click para descubrir');
+      el.setAttribute('title', 'Click to discover');
       el.addEventListener('click', openOverlay);
     });
   }

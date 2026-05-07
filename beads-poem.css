@@ -270,7 +270,7 @@
 /* ---------- BEADS HOVER HINT ---------- */
 .beads-obj { position: relative; }
 .beads-obj::after {
-    content: 'click para descubrir →';
+    content: 'click to explore →';
     position: absolute;
     bottom: -1.8rem;
     left: 50%;
