@@ -61,7 +61,7 @@
             time: '19:30', city: 'KL', country: 'MALAYSIA',
             code: 'KUL', gate: 'F1', flag: '🇲🇾',
             sky: 'linear-gradient(180deg,#100820 0%,#2a1050 45%,#5020a0 80%,#8040c0 100%)',
-            image: 'img/KL.JPG',
+            image: 'img/KL.jpg',
             date: 'SEP 2025',
             note: 'Petronas Towers from the skybridge. Chinatown, Little India, and Malay kampungs all within walking distance. A city that somehow holds it all together.',
             moods: ['Petronas Towers', 'multicultural', 'Chinatown', 'chaos that works'],
