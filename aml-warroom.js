@@ -71,13 +71,22 @@
   /* ---------- HELPERS ---------- */
   function pad(n) { return n < 10 ? '0' + n : '' + n; }
 
-  /* ---------- DRAW: VOLUME GRAPH ---------- */
-  function drawGraph() {
-    var c   = document.getElementById('wr-graph-canvas');
+function drawGraph() {
+    var c = document.getElementById('wr-graph-canvas');
     if (!c) return;
     var ctx = c.getContext('2d');
-    c.width = c.offsetWidth || 500;
-    var W = c.width, H = 72;
+
+    // ── DPR FIX ──
+    var dpr = window.devicePixelRatio || 1;
+    var W   = c.offsetWidth || 500;
+    var H   = 72;
+    c.width  = W * dpr;
+    c.height = H * dpr;
+    c.style.width  = W + 'px';
+    c.style.height = H + 'px';
+    ctx.scale(dpr, dpr);
+    // ─────────────
+
     var d = [10,14,12,18,15,22,13,11,28,32,18,14,11,17,22,20,15,19,27,52,58,44,34,26,18,14,12,17,15,11];
     var mx = Math.max.apply(null, d), bw = W / d.length;
     ctx.clearRect(0, 0, W, H);
@@ -99,14 +108,22 @@
     ctx.stroke();
     ctx.setLineDash([]);
   }
-
-  /* ---------- DRAW: ENTITY MAP ---------- */
-  function drawMap() {
-    var c   = document.getElementById('wr-map-canvas');
+function drawMap() {
+    var c = document.getElementById('wr-map-canvas');
     if (!c) return;
     var ctx = c.getContext('2d');
-    c.width = c.offsetWidth || 240;
-    var W = c.width, H = 110;
+
+    // ── DPR FIX ──
+    var dpr = window.devicePixelRatio || 1;
+    var W   = c.offsetWidth || 240;
+    var H   = 110;
+    c.width  = W * dpr;
+    c.height = H * dpr;
+    c.style.width  = W + 'px';
+    c.style.height = H + 'px';
+    ctx.scale(dpr, dpr);
+    // ─────────────
+
     var nodes = [
       {x:.08, y:.5, label:'Persona A',    col:'#d29922'},
       {x:.28, y:.5, label:'Empresa XYZ',  col:'#d29922'},
