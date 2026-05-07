@@ -5,57 +5,61 @@
 
 (function () {
 
-  /* ---------- DATA ---------- */
-  var COLORS  = ['#1A1A1A', '#D14B35', '#2A6B3F', '#2B4C8C', '#C49A3C'];
-  var LETTERS = ['T', 'A', 'N', 'I', 'A'];
+/* ---------- DATA ---------- */
+var COLORS  = ['#1A1A1A', '#D14B35', '#2A6B3F', '#2B4C8C', '#C49A3C'];
+var LETTERS = ['T', 'A', 'N', 'I', 'A'];
 
-  var STANZAS = [
-    // T
-    {
-      lines: [
-        { text: 'Toda buena historia',      cls: '' },
-        { text: 'empieza con una <em>semilla</em>', cls: '' },
-        { text: 'o con un vuelo.',           cls: 'accent' },
-      ],
-      sub: 'data scientist · builder · ITAM'
-    },
-    // A
-    {
-      lines: [
-        { text: 'Aterricé en Singapur',                       cls: '' },
-        { text: 'con una mochila y la certeza',               cls: '' },
-        { text: 'de que el mundo <em>cabe</em> si lo buscas.', cls: '' },
-      ],
-      sub: '7 países · NUS 2025 · seguí viajando'
-    },
-    // N
-    {
-      lines: [
-        { text: 'No basta con analizar —',           cls: '' },
-        { text: 'hay que <em>plantar</em>, cultivar,', cls: '' },
-        { text: 'y quedarte a ver crecer.',           cls: 'accent' },
-      ],
-      sub: 'Presidenta · Huerto ITAM · 2022→'
-    },
-    // I
-    {
-      lines: [
-        { text: 'Igual hablo con datos',               cls: '' },
-        { text: 'que con tierra entre las manos',      cls: '' },
-        { text: 'o con <em>música</em> de fondo.',      cls: '' },
-      ],
-      sub: 'SQL · Python · afrobeats · 80s rock'
-    },
-    // A — final
-    {
-      lines: [
-        { text: 'Al final,',                              cls: '' },
-        { text: 'construyo cosas que <em>importan</em>', cls: '' },
-        { text: '— y eso es suficiente.',                 cls: 'accent' },
-      ],
-      sub: 'available 2026 · let\'s build something'
-    },
-  ];
+var STANZAS = [
+  // T
+  {
+    lines: [
+      { text: 'The best stories',                 cls: '' },
+      { text: 'take root from a <em>seed</em>',   cls: '' },
+      { text: 'or from a leap into the unknown.', cls: 'accent' },
+    ],
+    sub: 'data scientist · builder · ITAM'
+  },
+
+  // A
+  {
+    lines: [
+      { text: 'Across Singapore, I arrived',            cls: '' },
+      { text: 'armed with a backpack and the feeling',  cls: '' },
+      { text: 'that the world <em>opens</em> when you seek it.', cls: '' },
+    ],
+    sub: '7 countries · NUS 2025 · still exploring'
+  },
+
+  // N
+  {
+    lines: [
+      { text: 'Numbers alone are never enough —', cls: '' },
+      { text: 'nurture what you <em>plant</em>,', cls: '' },
+      { text: 'and stay to watch it grow.',       cls: 'accent' },
+    ],
+    sub: 'President · ITAM Garden · 2022→'
+  },
+
+  // I
+  {
+    lines: [
+      { text: 'I move between data,',                   cls: '' },
+      { text: 'inked code and soil on my hands,',       cls: '' },
+      { text: 'with <em>music</em> always nearby.',     cls: '' },
+    ],
+    sub: 'SQL · Python · afrobeats · 80s rock'
+  },
+
+  // A — final
+  {
+    lines: [
+      { text: 'At the end of it all,',                 cls: '' },
+      { text: 'I build things that <em>matter</em>',   cls: '' },
+      { text: '— and that is enough for me.',          cls: 'accent' },
+    ],
+    sub: 'available 2026 · let’s build something'
+  },
+];
 
   /* ---------- STATE ---------- */
   var revealed  = 0;
