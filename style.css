@@ -231,8 +231,7 @@ em { font-family: var(--font-display); font-style: italic; font-weight: 300; }
 /* Carousel arrow navigation */
 .carousel-arrow {
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    bottom: -3px;
     background: rgba(26, 26, 26, 0.06);
     border: 1px solid rgba(26, 26, 26, 0.15);
     width: 44px;
@@ -256,11 +255,11 @@ em { font-family: var(--font-display); font-style: italic; font-weight: 300; }
 }
 
 .carousel-arrow:active {
-    transform: translateY(-50%) scale(0.94);
+    transform: scale(0.94);
 }
 
 .carousel-arrow--left {
-    left: max(10px, calc(50% - 380px));
+    left: calc(50% - 50px);
 }
 
 .carousel-arrow--left::before {
@@ -268,7 +267,7 @@ em { font-family: var(--font-display); font-style: italic; font-weight: 300; }
 }
 
 .carousel-arrow--right {
-    right: max(10px, calc(50% - 380px));
+    left: calc(50% + px);
 }
 
 .carousel-arrow--right::before {
