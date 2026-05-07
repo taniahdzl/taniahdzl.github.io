@@ -36,11 +36,15 @@
     overflow-y: auto;
     position: relative;
     box-shadow: 0 40px 120px rgba(0,0,0,0.6), 0 0 0 1px #30363d;
-    transform: translateY(24px) scale(0.97);
+    transform: translateY(24px);
+    will-change: transform;
     transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 #wr-overlay.wr-overlay--open .wr-modal {
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
 }
 
 /* ---------- HEADER ---------- */
@@ -177,7 +181,12 @@
     border-radius: 8px;
     padding: 10px;
 }
-#wr-graph-canvas { display: block; width: 100%; }
+#wr-graph-canvas {
+    display: block;
+    width: 100%;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+}
 
 /* ---------- TRANSACTIONS TABLE ---------- */
 .wr-table {
@@ -211,8 +220,8 @@
 .wr-row--flagged { background: rgba(248,81,73,0.06); }
 .wr-row--flagged:hover { background: rgba(248,81,73,0.11); }
 .wr-cell-id   { color: #8b949e; font-size: 0.5rem; }
-.wr-cell-flow { font-size: 0.5rem; }
-.wr-cell-type { font-size: 0.45rem; color: #8b949e; }
+.wr-cell-flow { font-size: 0.58rem; color: #d0d8e4; }
+.wr-cell-type { font-size: 0.52rem; color: #8b949e; }
 .wr-amt       { color: #f0f6fc; font-weight: 500; }
 .wr-amt--sus  { color: #f85149; }
 .wr-tag {
@@ -324,8 +333,8 @@
     color: #f0f6fc;
 }
 .wr-step-desc {
-    font-size: 0.5rem;
-    color: #8b949e;
+    font-size: 0.56rem;
+    color: #a0aab4;
     line-height: 1.55;
     margin-left: 24px;
     margin-bottom: 6px;
