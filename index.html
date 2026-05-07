@@ -53,12 +53,13 @@
                 <span class="line italic"> Engineer </span>
             </h1>
             <p class="hero-sub">ITAM × NUS · Flag Football · Huerto · Music</p>
-            <p class="hero-carousel-hint">click on the objects to explore →</p>
+            <p class="hero-carousel-hint">click · drag · or use arrows →</p>
         </div>
 
         <!-- 3-D spinning carousel — full width, dominant -->
         <div class="banner" style="--quantity:7">
-            <div class="slider">
+            <button class="carousel-nav carousel-nav--left" id="carouselPrev" aria-label="Previous object">←</button>
+            <div class="slider" id="carouselSlider">
 
                 <!-- 1 · Vinyl → Listening Room -->
                 <div class="item" style="--position:1">
@@ -166,8 +167,8 @@
                         <span class="obj-label">that's me</span>
                     </div>
                 </div>
-
             </div>
+            <button class="carousel-nav carousel-nav--right" id="carouselNext" aria-label="Next object">→</button>
         </div>
 
         <!-- Scroll cue -->
