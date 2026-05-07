@@ -8,19 +8,19 @@
   /* ---------- ALBUMS ---------- */
   var ALBUMS = [
     {
-      city: 'Ciudad de México', era: '2022 — presente', short: 'CDMX',
+      city: 'Ciudad de México', era: '2022 — present', short: 'CDMX',
       color: '#C49A3C',
-      note: 'La ciudad que me hizo. Mercados, tráfico, el ruido de fondo de crecer. Esta playlist suena a caos bonito.',
-      genres: ['latin indie', 'afrobeats', '80s rock', 'boleros'],
-      track: 'CDMX forever',
-      playlistId: '37i9dQZF1DX0pH2SQMRXnC',
+      note: 'The city that made me. Markets, traffic, the background noise of growing up. This playlist sounds like beautiful chaos.',
+      genres: ['señora music'],
+      track: 'CDMX Señora',
+      playlistId: '3KqlDW0E6h8fgoLOYxRsOD',
       led: [196, 154, 60],
     },
     {
       city: 'Singapur', era: 'Aug — Dec 2025', short: 'SIN',
       color: '#D14B35',
-      note: 'Cinco meses que lo cambiaron todo. Hawker centres a medianoche, el MRT, lluvia tropical todos los días a las 4pm.',
-      genres: ['k-indie', 'j-pop', 'hyperpop', 'ambient'],
+      note: 'Five months that changed everything. Hawker centres at midnight, the MRT, tropical rain every day at 4pm.',
+      genres: ['edm', 'house', 'club-music'],
       track: 'Singapore nights',
       playlistId: '2ccjvVUl20k9qmaFgMbqv7',
       led: [209, 75, 53],
@@ -28,7 +28,7 @@
     {
       city: 'Kyoto', era: 'Nov 2025', short: 'KYO',
       color: '#2B4C8C',
-      note: 'Bamboo forest at 6am. Silencio real. Esta playlist no tiene letras — solo instrumentales que caben en un templo.',
+      note: 'Bamboo forest at 6am. True silence. This playlist has no lyrics — only instrumentals that fit in a temple.',
       genres: ['japanese jazz', 'ambient', 'neo-classical'],
       track: 'Kyoto 6am',
       playlistId: '6wxD9cupvIoOBhj701Ih8n',
@@ -37,28 +37,28 @@
     {
       city: 'Bangkok', era: 'Oct 2025', short: 'BKK',
       color: '#D14B35',
-      note: 'Caos perfectamente organizado. Tuk-tuks, templos y el mejor pad thai del mundo. La playlist pica igual.',
-      genres: ['thai pop', 'cumbia', 'dancehall', 'afrobeats'],
+      note: 'Perfectly organized chaos. Tuk-tuks, temples, and the best pad thai in the world. The playlist hits just as hard.',
+      genres: ['thai pop','dancehall', 'pop'],
       track: 'Bangkok heat',
-      playlistId: '37i9dQZF1DX5q67ZpuRkOT',
+      playlistId: '03HQ8XhcKv6gEnXToWMhzl',
       led: [209, 75, 53],
     },
     {
       city: 'Seoul', era: 'Nov 2025', short: 'ICN',
       color: '#5BAD72',
-      note: 'Palacios y rascacielos. K-indie en el metro a medianoche. La ciudad que nunca duerme, y yo tampoco.',
-      genres: ['k-indie', 'lo-fi hip hop', 'k-r&b'],
+      note: 'Palaces and skyscrapers. K-indie in the subway at midnight. The city that never sleeps, and neither do I.',
+      genres: ['pop', 'hip hop', 'k-r&b'],
       track: 'Seoul midnight',
-      playlistId: '37i9dQZF1DX9tPFAjMgmA8',
+      playlistId: '2Q83vu8OUWDgq8ODU0cFOe',
       led: [91, 173, 114],
     },
     {
       city: 'Bali', era: 'Sep 2025', short: 'DPS',
       color: '#2A6B3F',
-      note: 'Arrozales y selva. El único lugar donde estar quieta se siente productivo. Esta playlist dura horas.',
-      genres: ['world music', 'reggae', 'tropical', 'lo-fi'],
+      note: 'Rice fields and jungle. The only place where staying still feels productive. This playlist lasts for hours.',
+      genres: ['house','tropical', 'lo-fi'],
       track: 'Bali slow',
-      playlistId: '37i9dQZF1DX4PP3DA4J0N8',
+      playlistId: '1V63ensz84shja8QVEWzc5',
       led: [42, 107, 63],
     },
   ];
@@ -267,7 +267,7 @@
     // Wire carousel trigger
     document.querySelectorAll('.vinyl-obj').forEach(function (el) {
       el.style.cursor = 'pointer';
-      el.setAttribute('title', 'Click para abrir The Listening Room');
+      el.setAttribute('title', 'Click to open The Listening Room');
       el.addEventListener('click', openOverlay);
     });
   }
@@ -281,14 +281,14 @@
       '    <div class="lr-shelf">',
       '      <div class="lr-shelf-top">',
       '        <div class="lr-shelf-logo">Listening Room</div>',
-      '        <div class="lr-shelf-sub">ciudades · épocas · moods</div>',
+      '        <div class="lr-shelf-sub">cities · eras · moods</div>',
       '      </div>',
       '      <div class="lr-records" id="lr-records"></div>',
       '    </div>',
 
       '    <div class="lr-player" id="lr-player">',
       '      <canvas class="lr-ambience" id="lr-amb"></canvas>',
-      '      <button class="lr-close-btn" id="lr-close" aria-label="Cerrar">✕</button>',
+      '      <button class="lr-close-btn" id="lr-close" aria-label="Close">✕</button>',
       '      <div class="lr-pcontent">',
 
       '        <div class="lr-left">',
