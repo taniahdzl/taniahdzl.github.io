@@ -260,7 +260,7 @@ em { font-family: var(--font-display); font-style: italic; font-weight: 300; }
 }
 
 .carousel-arrow--left {
-    left: max(10px, calc(50% - 250px));
+    left: max(10px, calc(50% - 380px));
 }
 
 .carousel-arrow--left::before {
@@ -268,7 +268,7 @@ em { font-family: var(--font-display); font-style: italic; font-weight: 300; }
 }
 
 .carousel-arrow--right {
-    right: max(10px, calc(50% - 250px));
+    right: max(10px, calc(50% - 380px));
 }
 
 .carousel-arrow--right::before {
@@ -283,11 +283,11 @@ em { font-family: var(--font-display); font-style: italic; font-weight: 300; }
     }
 
     .carousel-arrow--left {
-        left: max(8px, calc(50% - 200px));
+        left: max(8px, calc(50% - 280px));
     }
 
     .carousel-arrow--right {
-        right: max(8px, calc(50% - 200px));
+        right: max(8px, calc(50% - 280px));
     }
 }
 
