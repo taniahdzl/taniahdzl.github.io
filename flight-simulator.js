@@ -11,6 +11,7 @@
             time: '08:15', city: 'SINGAPORE', country: 'CITY-STATE',
             code: 'SIN', gate: 'A1', flag: '🇸🇬',
             sky: 'linear-gradient(180deg,#0e2040 0%,#1a4080 50%,#e87040 80%,#f0a050 100%)',
+            image: 'img/Singapore.JPG',
             date: 'AUG — DEC 2025',
             note: 'Home for 5 months. NUS changed everything — the transit system, the hawker centres, the density of ideas. I arrived a student and left something else.',
             moods: ['home base', 'NUS exchange', 'hawker centres', 'best transit ever', '5 months'],
@@ -20,6 +21,7 @@
             time: '10:40', city: 'KYOTO', country: 'JAPAN',
             code: 'KIX', gate: 'B3', flag: '🇯🇵',
             sky: 'linear-gradient(180deg,#1a0e2e 0%,#3a1060 40%,#c04060 75%,#f08060 100%)',
+            image: 'img/Kyoto.JPG',
             date: 'NOV 2025',
             note: 'Bamboo forests at 6am before the tourists arrived. Matcha everywhere. A 400-year-old temple where I sat for an hour doing nothing — and it felt like the right thing.',
             moods: ['bamboo forest', 'ancient temples', 'matcha everything', '4am sunrises'],
@@ -29,6 +31,7 @@
             time: '13:20', city: 'BANGKOK', country: 'THAILAND',
             code: 'BKK', gate: 'C7', flag: '🇹🇭',
             sky: 'linear-gradient(180deg,#200a0a 0%,#601520 40%,#d05020 75%,#f0a030 100%)',
+            image: 'img/Bangkok.JPG',
             date: 'OCT 2025',
             note: 'Controlled chaos. A temple at every corner, tuk-tuks weaving through traffic, and the best street food on Earth. You don\'t visit Bangkok — you survive it, and love it.',
             moods: ['street food', 'temple chaos', 'tuk-tuks', 'night markets', 'survived it'],
@@ -38,6 +41,7 @@
             time: '15:55', city: 'SEOUL', country: 'SOUTH KOREA',
             code: 'ICN', gate: 'D2', flag: '🇰🇷',
             sky: 'linear-gradient(180deg,#080e20 0%,#102040 40%,#304870 75%,#6080a0 100%)',
+            image: 'img/Seoul.JPG',
             date: 'NOV 2025',
             note: 'Palaces next to skyscrapers. K-indie on the subway at midnight. Street food in Myeongdong at 2am. The city never sleeps — and neither did I.',
             moods: ['K-indie playlists', 'Myeongdong 2am', 'palace vibes', 'city that never sleeps'],
@@ -47,6 +51,7 @@
             time: '17:10', city: 'BALI', country: 'INDONESIA',
             code: 'DPS', gate: 'E4', flag: '🇮🇩',
             sky: 'linear-gradient(180deg,#0a1a0a 0%,#1a4020 40%,#7a9840 75%,#d4c060 100%)',
+            image: 'img/Bali.JPG',
             date: 'SEP 2025',
             note: 'Rice terraces and monkey forests. Watching the sun set over Tanah Lot with a coconut in hand. The kind of slow that makes you rethink everything.',
             moods: ['rice terraces', 'monkey forest', 'Tanah Lot', 'island slow'],
@@ -56,6 +61,7 @@
             time: '19:30', city: 'KL', country: 'MALAYSIA',
             code: 'KUL', gate: 'F1', flag: '🇲🇾',
             sky: 'linear-gradient(180deg,#100820 0%,#2a1050 45%,#5020a0 80%,#8040c0 100%)',
+            image: 'img/KL.JPG',
             date: 'SEP 2025',
             note: 'Petronas Towers from the skybridge. Chinatown, Little India, and Malay kampungs all within walking distance. A city that somehow holds it all together.',
             moods: ['Petronas Towers', 'multicultural', 'Chinatown', 'chaos that works'],
@@ -65,6 +71,7 @@
             time: '21:05', city: 'HANOI', country: 'VIETNAM',
             code: 'HAN', gate: 'G9', flag: '🇻🇳',
             sky: 'linear-gradient(180deg,#040810 0%,#0a1828 45%,#1a3848 80%,#304858 100%)',
+            image: 'img/Hanoi.JPG',
             date: 'OCT 2025',
             note: 'Motorbikes everywhere. Pho at 7am in a tiny plastic chair. Halong Bay emerging from fog like a painting. Vietnam operates on a different frequency.',
             moods: ['Halong Bay', 'pho at dawn', 'motorbike chaos', 'different frequency'],
@@ -152,7 +159,19 @@
 
     function loadFlightData(idx) {
         var d = DESTINATIONS[idx];
-        document.getElementById('fs-sky').style.background    = d.sky;
+        var skyEl = document.getElementById('fs-sky');
+        
+        // Use image if available, otherwise use sky gradient
+        if (d.image) {
+            skyEl.style.backgroundImage = 'url(' + d.image + ')';
+            skyEl.style.backgroundSize = 'cover';
+            skyEl.style.backgroundPosition = 'center';
+            skyEl.style.backgroundColor = 'transparent';
+        } else {
+            skyEl.style.backgroundImage = 'none';
+            skyEl.style.background = d.sky;
+        }
+        
         document.getElementById('fs-flag').textContent        = d.flag;
         document.getElementById('fs-flight-code').textContent = 'TNI-' + d.code;
         document.getElementById('fs-city').textContent        = d.city;
