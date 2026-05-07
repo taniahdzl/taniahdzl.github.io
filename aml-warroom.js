@@ -96,7 +96,7 @@ function drawGraph() {
       ctx.fillRect(i * bw + 1, H - h, bw - 2, h);
     });
     ctx.fillStyle = '#f85149';
-    ctx.font = '7px monospace';
+    ctx.font = '9px monospace';
     ctx.textAlign = 'center';
     ctx.fillText('spike sospechoso', 19.5 * bw, 10);
     ctx.beginPath();
@@ -146,7 +146,8 @@ function drawMap() {
       ctx.beginPath(); ctx.moveTo(4,0); ctx.lineTo(-3,-3); ctx.lineTo(-3,3); ctx.closePath(); ctx.fill();
       ctx.restore();
       ctx.fillStyle = sus ? 'rgba(248,81,73,0.85)' : 'rgba(210,153,34,0.85)';
-      ctx.font = '7px monospace'; ctx.textAlign = 'center';
+      ctx.font = '9px monospace';
+      ctx.textAlign = 'center';
       ctx.fillText(amts[i], mx2, my2-10);
     }
     nodes.forEach(function (n, i) {
@@ -156,12 +157,12 @@ function drawMap() {
       }
       ctx.beginPath(); ctx.arc(n.x*W, n.y*H, 9, 0, Math.PI*2);
       ctx.fillStyle = n.col; ctx.fill();
-      ctx.fillStyle = '#f0f6fc'; ctx.font = 'bold 7px monospace';
+      ctx.fillStyle = '#f0f6fc'; ctx.font = 'bold 9px monospace';
       ctx.textAlign = 'center'; ctx.textBaseline = 'bottom';
       ctx.fillText(n.label, n.x*W, n.y*H - 13);
     });
     ctx.fillStyle = 'rgba(248,81,73,0.45)';
-    ctx.font = '7px monospace'; ctx.textAlign = 'right'; ctx.textBaseline = 'bottom';
+    ctx.font = '9px monospace'; ctx.textAlign = 'right'; ctx.textBaseline = 'bottom';
     ctx.fillText('todo en 48 horas →', W-4, H-2);
   }
 
