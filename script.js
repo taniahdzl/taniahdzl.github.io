@@ -30,26 +30,37 @@ document.addEventListener('DOMContentLoaded', function () {
         var anglePerItem = 360 / quantity;
         var isAnimating = false;
 
-        function rotateCarousel(targetRotation) {
+        function rotateCarousel(direction) {
             if (isAnimating) return;
             isAnimating = true;
 
-            currentRotation = targetRotation % 360;
+            // Stop the continuous animation
+            slider.style.animation = 'none';
+            
+            // Calculate new rotation
+            if (direction === 'next') {
+                currentRotation += anglePerItem;
+            } else {
+                currentRotation -= anglePerItem;
+            }
+
+            // Apply smooth transition
             slider.style.transition = 'transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)';
             slider.style.transform = 'perspective(1000px) rotateX(-16deg) rotateY(' + currentRotation + 'deg)';
 
             setTimeout(function() {
-                slider.style.transition = '';
                 isAnimating = false;
             }, 600);
         }
 
-        prevBtn.addEventListener('click', function() {
-            rotateCarousel(currentRotation - anglePerItem);
+        prevBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            rotateCarousel('prev');
         });
 
-        nextBtn.addEventListener('click', function() {
-            rotateCarousel(currentRotation + anglePerItem);
+        nextBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            rotateCarousel('next');
         });
     }
 
