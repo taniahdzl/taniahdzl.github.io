@@ -227,85 +227,40 @@ em { font-family: var(--font-display); font-style: italic; font-weight: 300; }
     gap: 0.5rem;
     z-index: 10;
 }
-
 /* Carousel arrow navigation */
+.carousel-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: -1rem;
+    padding-bottom: 2rem;
+    position: relative;
+    z-index: 15;
+}
+
 .carousel-arrow {
-    position: absolute;
-    bottom: -3px;
-    background: rgba(26, 26, 26, 0.06);
-    border: 1px solid rgba(26, 26, 26, 0.15);
-    width: 44px;
-    height: 44px;
+    background: transparent;
+    border: 1px solid rgba(26, 26, 26, 0.18);
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    font-size: 1.3rem;
     color: var(--ink-light);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.25s ease;
-    z-index: 15;
-    font-weight: 500;
+    transition: all 0.2s ease;
+    font-size: 0.9rem;
 }
-
 .carousel-arrow:hover {
-    background: rgba(26, 26, 26, 0.12);
-    border-color: rgba(26, 26, 26, 0.25);
-    color: var(--ink);
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--bg);
 }
-
-.carousel-arrow:active {
-    transform: scale(0.94);
-}
-
-.carousel-arrow--left {
-    left: calc(50% - 50px);
-}
-
-.carousel-arrow--left::before {
-    content: '←';
-}
-
-.carousel-arrow--right {
-    left: calc(50% + px);
-}
-
-.carousel-arrow--right::before {
-    content: '→';
-}
-
-@media (max-width: 1024px) {
-    .carousel-arrow {
-        width: 40px;
-        height: 40px;
-        font-size: 1.1rem;
-    }
-
-    .carousel-arrow--left {
-        left: max(8px, calc(50% - 280px));
-    }
-
-    .carousel-arrow--right {
-        right: max(8px, calc(50% - 280px));
-    }
-}
-
-@media (max-width: 768px) {
-    .carousel-arrow {
-        width: 36px;
-        height: 36px;
-        font-size: 1rem;
-        background: rgba(26, 26, 26, 0.08);
-    }
-
-    .carousel-arrow--left {
-        left: 8px;
-    }
-
-    .carousel-arrow--right {
-        right: 8px;
-    }
-}
+.carousel-arrow:active { transform: scale(0.92); }
+.carousel-arrow--left::before  { content: '←'; }
+.carousel-arrow--right::before { content: '→'; }
 
 /* Responsive — slow down and shrink on mobile */
 @media (max-width: 768px) {
