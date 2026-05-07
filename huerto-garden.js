@@ -294,9 +294,17 @@
     ].join('');
     document.body.appendChild(overlay);
 
-    canvas=document.getElementById('hg-canvas');ctx=canvas.getContext('2d');
+    canvas=document.getElementById('hg-canvas');
+     ctx=canvas.getContext('2d');
     tooltipEl=document.getElementById('hg-tooltip');
-    canvas.width=CW;canvas.height=CH;
+     // ── DPR FIX ──
+    var dpr = window.devicePixelRatio || 1;
+    canvas.width  = CW * dpr;
+    canvas.height = CH * dpr;
+    canvas.style.width  = CW + 'px';
+    canvas.style.height = CH + 'px';
+    ctx.scale(dpr, dpr);
+    // ─────────────
 
     document.getElementById('hg-close').addEventListener('click',closeOverlay);
     overlay.addEventListener('click',function(e){if(e.target===overlay)closeOverlay();});
