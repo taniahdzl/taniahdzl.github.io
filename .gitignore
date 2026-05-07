@@ -1,0 +1,41 @@
+# OS files
+.DS_Store
+Thumbs.db
+.DS_Store?
+*.swp
+*.swo
+
+# IDE & Editor files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+.atom/
+.project
+.classpath
+.settings/
+
+# Node & npm
+node_modules/
+npm-debug.log
+yarn-error.log
+.npm
+
+# Build & dependencies
+dist/
+build/
+*.log
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Temporary files
+*.tmp
+*.temp
+*~
+
+# Package manager lock files (optional - uncomment if you want to commit them)
+# package-lock.json
+# yarn.lock
